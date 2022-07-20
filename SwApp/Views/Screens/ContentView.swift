@@ -45,7 +45,7 @@ struct ContentView: View {
                 // NOTE: This is to show the User Diplay under the profile info
                 if let userID = currentUserID, let displayName = currentUserDisplayName {
                     NavigationView {
-                        ProfileView(isMyProfile: true, profileDisplayName: displayName, profileUserID: userID, posts: PostArrayObject(userID: userID))
+                        ProfileView(isMyProfile: true, profileUserID: userID, profileDisplayName: displayName, posts: PostArrayObject(userID: userID))
                     }
                 } else {
                     SignUpView()

@@ -29,6 +29,10 @@ class ImageManager {
         
         // Save image to path
         self.uploadImage(path: path, image: image) { (_) in }
+        
+        // Deleted Cached Image -- Mostly used for when uploading a new profile picture
+        imageCache.removeObject(forKey: path)
+
     }
     
     func uploadPostImage (postID: String, image: UIImage, handler: @escaping (_ success: Bool) -> ()) {

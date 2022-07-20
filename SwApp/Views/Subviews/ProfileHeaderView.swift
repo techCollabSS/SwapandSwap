@@ -11,6 +11,7 @@ struct ProfileHeaderView: View {
 
     @Binding var profileDisplayName: String
     @Binding var profileImage: UIImage
+    @Binding var profileBio: String
     @ObservedObject var postArray: PostArrayObject
     
     var body: some View {
@@ -29,10 +30,12 @@ struct ProfileHeaderView: View {
                 .fontWeight(.bold)
             
             //MARK: BIO
-            Text("Text in here for the bio!")
-                .font(.body)
-                .fontWeight(.regular)
-                .multilineTextAlignment(.center)
+            if profileBio != "" {
+                Text(profileBio)
+                    .font(.body)
+                    .fontWeight(.regular)
+                    .multilineTextAlignment(.center)
+            }
             
             HStack(alignment: .center, spacing: 20, content: {
                 
@@ -82,7 +85,7 @@ struct ProfileHeaderView_Previews: PreviewProvider {
     @State static var image: UIImage = UIImage(named: "dog1")!
     
     static var previews: some View {
-        ProfileHeaderView(profileDisplayName: $name, profileImage: $image, postArray:  PostArrayObject(shuffled: false))
+        ProfileHeaderView(profileDisplayName: $name, profileImage: $image, profileBio: $name, postArray:  PostArrayObject(shuffled: false))
             .previewLayout(.sizeThatFits)
     }
 }

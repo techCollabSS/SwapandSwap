@@ -42,7 +42,7 @@ struct PostView: View {
                     
                     NavigationLink(
                         destination: LazyView(content: { // Lazy View Avoids the repeated loading of an Item.
-                            ProfileView(isMyProfile: false, profileDisplayName: post.username, profileUserID: post.userID, posts: PostArrayObject(userID: post.userID))
+                            ProfileView(isMyProfile: false, profileUserID: post.userID, profileDisplayName: post.username, posts: PostArrayObject(userID: post.userID))
                         }),
                         label: {
                             Image(uiImage: profileImage)

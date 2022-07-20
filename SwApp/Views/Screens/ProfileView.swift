@@ -12,8 +12,9 @@ struct ProfileView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var isMyProfile: Bool
+    var profileUserID: String 
     @State var profileDisplayName: String
-    var profileUserID: String
+    @State var profileBio: String = ""
     
     @State var profileImage: UIImage = UIImage(named: "logo.loading")!
     
@@ -25,7 +26,7 @@ struct ProfileView: View {
         ScrollView(.vertical, showsIndicators: false, content: {
         
             VStack{
-                ProfileHeaderView(profileDisplayName: $profileDisplayName, profileImage: $profileImage, postArray: posts)
+                ProfileHeaderView(profileDisplayName: $profileDisplayName, profileImage: $profileImage, profileBio: $profileBio, postArray: posts)
             }
                 .background(Color.MyTheme.whiteColor)
                 .cornerRadius(12)
@@ -54,9 +55,10 @@ struct ProfileView: View {
             )
             .onAppear(perform: {
                 getProfileImage()
+                getAdditionalProfileInfo()
             })
             .sheet(isPresented: $showSettings, content: {
-                SettingsView()
+                SettingsView(userDisplayName: $profileDisplayName, userBio: $profileBio, userProfilePicture: $profileImage)
                     .preferredColorScheme(colorScheme)
             })
     }
@@ -70,14 +72,24 @@ struct ProfileView: View {
                 self.profileImage = image
             }
         }
-        
+    }
+    
+    func getAdditionalProfileInfo() {
+        AuthService.instance.getUserInfo(forUserID: profileUserID) { (returnedDisplayName, returnedBio) in
+            if let displayName = returnedDisplayName {
+                self.profileDisplayName = displayName
+            }
+            if let bio = returnedBio {
+                self.profileBio = bio
+            }
+        }
     }
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ProfileView(isMyProfile: true, profileDisplayName: "Joe", profileUserID: "", posts: PostArrayObject(userID: ""))
+            ProfileView(isMyProfile: true, profileUserID: "", profileDisplayName: "Joe", posts: PostArrayObject(userID: ""))
         }
         .preferredColorScheme(.dark)
         

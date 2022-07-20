@@ -17,7 +17,7 @@ struct MessageView: View {
 
             //MARK: PROFILE IMAGE
             NavigationLink(destination: LazyView(content: {
-                ProfileView(isMyProfile: false, profileDisplayName: comment.username, profileUserID: comment.userID, posts: PostArrayObject(userID: comment.userID))
+                ProfileView(isMyProfile: false, profileUserID: comment.userID, profileDisplayName: comment.username, posts: PostArrayObject(userID: comment.userID))
             })){
                 Image(uiImage: profilePicture)
                     .resizable()
@@ -31,7 +31,7 @@ struct MessageView: View {
                 
                 //MARK: USERNAME
                 NavigationLink(destination: LazyView(content: {
-                    ProfileView(isMyProfile: false, profileDisplayName: comment.username, profileUserID: comment.userID, posts: PostArrayObject(userID: comment.userID))
+                    ProfileView(isMyProfile: false, profileUserID: comment.userID, profileDisplayName: comment.username, posts: PostArrayObject(userID: comment.userID))
                 })){
                 Text(comment.username)
                     .font(.caption)
