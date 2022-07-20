@@ -20,7 +20,6 @@ class PostArrayObject: ObservableObject {
     
     /// USED FOR GETTING POSTS FOR USER PROFILE
     init(userID: String) {
-        
         print("GET POSTS FOR USER ID \(userID)")
         DataService.instance.downloadPostForUser(userID: userID) { (returnedPosts) in
             
