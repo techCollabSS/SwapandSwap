@@ -20,6 +20,8 @@ struct SettingsEditTextView: View {
     
     @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
     @State var showSuccessAlert: Bool = false
+
+    let haptics = UINotificationFeedbackGenerator() // Haptic Feedback: Phone Vibrations
     
     var body: some View {
         VStack {
@@ -63,12 +65,19 @@ struct SettingsEditTextView: View {
         .navigationBarTitle(title)
         .alert(isPresented: $showSuccessAlert) { () -> Alert in
             return Alert(title: Text("Saved 🥳"), message: nil, dismissButton: .default(Text("OK"), action: {
-                self.presentationMode.wrappedValue.dismiss()
+                dismissView()
             }))
         }
     }
     
     // MARK: FUNCTIONS
+    
+    // Function to have phone haptics/vibrations when dismissing a view 
+    func dismissView() {
+        self.haptics.notificationOccurred(.success)
+        self.presentationMode.wrappedValue.dismiss()
+
+    }
     
     func textIsAppropriate() -> Bool {
         // Check if the text has curses

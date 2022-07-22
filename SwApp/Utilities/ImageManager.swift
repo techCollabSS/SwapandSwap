@@ -28,8 +28,10 @@ class ImageManager {
         let path = getProfileImagePath(userID: userID)
         
         // Save image to path
-        self.uploadImage(path: path, image: image) { (_) in }
-        
+        DispatchQueue.global(qos: .userInteractive).async { // Multi Threading example NOTE: USE THIS IN HEAVY PROCESSES TO ALLOW THE APP TO RUN SMOOTHER
+            self.uploadImage(path: path, image: image) { (_) in }
+
+        }
         // Deleted Cached Image -- Mostly used for when uploading a new profile picture
         imageCache.removeObject(forKey: path)
 
@@ -41,8 +43,12 @@ class ImageManager {
         let path = getPostImagePath(postID: postID)
         
         // Save Image to Path
-        uploadImage(path: path, image: image) { (success) in
-            handler(success)
+        DispatchQueue.global(qos: .userInteractive).async { // Multi Threading example NOTE: USE THIS IN HEAVY PROCESSES TO ALLOW THE APP TO RUN SMOOTHER
+            self.uploadImage(path: path, image: image) { (success) in
+                DispatchQueue.main.async {
+                    handler(success) // Mutlti Thread If updating the main front end of the app we need to bring it back to the main thread. Handler is what controls weather we are updating or not.
+                }
+            }
         }
     }
     
@@ -52,8 +58,13 @@ class ImageManager {
         let path = getProfileImagePath(userID: userID)
         
         // Download image from the path
-        downloadImage(path: path) { (returnedImage) in
-            handler(returnedImage)
+        DispatchQueue.global(qos: .userInteractive).async {
+            self.downloadImage(path: path) { (returnedImage) in
+                DispatchQueue.main.async {
+                    handler(returnedImage)
+
+                }
+            }
         }
     }
     
@@ -63,10 +74,13 @@ class ImageManager {
         let path = getPostImagePath(postID: postID)
         
         // Download the image from path
-        downloadImage(path: path) { (returnedImage) in
-            handler(returnedImage)
+        DispatchQueue.global(qos: .userInteractive).async {
+            self.downloadImage(path: path) { (returnedImage) in
+                DispatchQueue.main.async {
+                    handler(returnedImage)
+                }
+            }
         }
-        
     }
     
     // MARK: PRIVATE FUNCTIONS
