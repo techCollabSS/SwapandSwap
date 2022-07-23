@@ -27,8 +27,8 @@ struct OnboardingView: View {
                 .frame(width: 100, height: 100, alignment: .center)
                 .shadow(radius: 12)
             
-            Text("Welcome to SwApp!")
-                .font(.largeTitle)
+            Text("Welcome to Swap & Swap!")
+                .font(.title)
                 .fontWeight(.bold)
                 .foregroundColor(Color.MyTheme.purpleColor)
             
@@ -79,7 +79,6 @@ struct OnboardingView: View {
         }
         .padding(.all, 20)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.MyTheme.beigeColor)
         .edgesIgnoringSafeArea(.all)
         .fullScreenCover(isPresented: $showOnboardingPart2, onDismiss: {
             self.presentationMode.wrappedValue.dismiss()
@@ -89,7 +88,10 @@ struct OnboardingView: View {
         .alert(isPresented: $showError, content: {
             return Alert(title: Text("Error signin in 😢"))
         })
+        .background(PlayerView())
+        .edgesIgnoringSafeArea(.all)
     }
+
     
     //MARK: FUNCTIONS
     

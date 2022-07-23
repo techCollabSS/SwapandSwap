@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5F1ED80F288A142A00573FBC /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1ED80E288A142A00573FBC /* AnalyticsService.swift */; };
+		5F289691288B828C00BAA683 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F289690288B828C00BAA683 /* PlayerView.swift */; };
 		5F3DA57B274F198500931540 /* SignInWithGoogle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3DA57A274F198400931540 /* SignInWithGoogle.swift */; };
 		5F3DA57E274F59EA00931540 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3DA57D274F59EA00931540 /* AuthService.swift */; };
 		5F3DA5802750A9E000931540 /* Enums & Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3DA57F2750A9E000931540 /* Enums & Structs.swift */; };
@@ -75,6 +76,7 @@
 		2D49C759DC9BA29C5D9C9C0E /* Pods-SwApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwApp.release.xcconfig"; path = "Target Support Files/Pods-SwApp/Pods-SwApp.release.xcconfig"; sourceTree = "<group>"; };
 		531172302C2644AB7F3B4BCB /* Pods-SwApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwApp.debug.xcconfig"; path = "Target Support Files/Pods-SwApp/Pods-SwApp.debug.xcconfig"; sourceTree = "<group>"; };
 		5F1ED80E288A142A00573FBC /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
+		5F289690288B828C00BAA683 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		5F3DA57A274F198400931540 /* SignInWithGoogle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithGoogle.swift; sourceTree = "<group>"; };
 		5F3DA57D274F59EA00931540 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		5F3DA57F2750A9E000931540 /* Enums & Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enums & Structs.swift"; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				5F3DA5822750AC4500931540 /* ImageManager.swift */,
+				5F289690288B828C00BAA683 /* PlayerView.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -573,6 +576,7 @@
 				5FB137C12737877500E709C5 /* SettingsEditImageView.swift in Sources */,
 				5FB137A02731F67600E709C5 /* CommentsView.swift in Sources */,
 				5FB137B52735BF1C00E709C5 /* ProfileHeaderView.swift in Sources */,
+				5F289691288B828C00BAA683 /* PlayerView.swift in Sources */,
 				5FB137AC2732349500E709C5 /* UploadView.swift in Sources */,
 				5F3DA5802750A9E000931540 /* Enums & Structs.swift in Sources */,
 				5FCE804E27388FFA006530BD /* OnboardingView.swift in Sources */,
@@ -658,7 +662,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				EXCLUDED_ARCHS = "";
+				EXCLUDED_ARCHS = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -723,7 +727,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXCLUDED_ARCHS = "";
+				EXCLUDED_ARCHS = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -761,10 +765,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"SwApp/Preview Content\"";
 				DEVELOPMENT_TEAM = UQL9NN2H9X;
 				ENABLE_PREVIEWS = YES;
-				EXCLUDED_ARCHS = "";
+				EXCLUDED_ARCHS = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SwApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = SwapAndSwap;
+				INFOPLIST_KEY_CFBundleDisplayName = "Swap & Swap";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses the camera at the user's request to take a photo.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This allows the app to access the photo library to import or save a photo at the user's reqeust.";
@@ -886,10 +890,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"SwApp/Preview Content\"";
 				DEVELOPMENT_TEAM = UQL9NN2H9X;
 				ENABLE_PREVIEWS = YES;
-				EXCLUDED_ARCHS = "";
+				EXCLUDED_ARCHS = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SwApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = SwapAndSwap;
+				INFOPLIST_KEY_CFBundleDisplayName = "Swap & Swap";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses the camera at the user's request to take a photo.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This allows the app to access the photo library to import or save a photo at the user's reqeust.";

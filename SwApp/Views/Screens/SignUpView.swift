@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import AVKit
+import AVFoundation
 
 struct SignUpView: View {
     
