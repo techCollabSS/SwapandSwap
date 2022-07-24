@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5F1ED80F288A142A00573FBC /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1ED80E288A142A00573FBC /* AnalyticsService.swift */; };
 		5F289691288B828C00BAA683 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F289690288B828C00BAA683 /* PlayerView.swift */; };
+		5F312FFF288CC8EF00B281E6 /* onboarding.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5F312FFE288CC8EF00B281E6 /* onboarding.mp4 */; };
+		5F313002288CD49C00B281E6 /* PlainGroupBoxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F313001288CD49C00B281E6 /* PlainGroupBoxStyle.swift */; };
 		5F3DA57B274F198500931540 /* SignInWithGoogle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3DA57A274F198400931540 /* SignInWithGoogle.swift */; };
 		5F3DA57E274F59EA00931540 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3DA57D274F59EA00931540 /* AuthService.swift */; };
 		5F3DA5802750A9E000931540 /* Enums & Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3DA57F2750A9E000931540 /* Enums & Structs.swift */; };
@@ -77,6 +79,8 @@
 		531172302C2644AB7F3B4BCB /* Pods-SwApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwApp.debug.xcconfig"; path = "Target Support Files/Pods-SwApp/Pods-SwApp.debug.xcconfig"; sourceTree = "<group>"; };
 		5F1ED80E288A142A00573FBC /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		5F289690288B828C00BAA683 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		5F312FFE288CC8EF00B281E6 /* onboarding.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = onboarding.mp4; sourceTree = "<group>"; };
+		5F313001288CD49C00B281E6 /* PlainGroupBoxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainGroupBoxStyle.swift; sourceTree = "<group>"; };
 		5F3DA57A274F198400931540 /* SignInWithGoogle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithGoogle.swift; sourceTree = "<group>"; };
 		5F3DA57D274F59EA00931540 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		5F3DA57F2750A9E000931540 /* Enums & Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enums & Structs.swift"; sourceTree = "<group>"; };
@@ -152,6 +156,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F313000288CC93200B281E6 /* Videos */ = {
+			isa = PBXGroup;
+			children = (
+				5F312FFE288CC8EF00B281E6 /* onboarding.mp4 */,
+			);
+			path = Videos;
+			sourceTree = "<group>";
+		};
 		5F3DA57C274F59BE00931540 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +179,8 @@
 			children = (
 				5F3DA5822750AC4500931540 /* ImageManager.swift */,
 				5F289690288B828C00BAA683 /* PlayerView.swift */,
+				5F313001288CD49C00B281E6 /* PlainGroupBoxStyle.swift */,
+				5F313000288CC93200B281E6 /* Videos */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -450,6 +464,7 @@
 				5FCE8056273A303E006530BD /* GoogleService-Info.plist in Resources */,
 				5FB1378B2730D4A800E709C5 /* Assets.xcassets in Resources */,
 				5FB13769272F94AE00E709C5 /* Preview Assets.xcassets in Resources */,
+				5F312FFF288CC8EF00B281E6 /* onboarding.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,6 +586,7 @@
 				5F48EB90274D98D0003B2F0F /* SignInWithApple.swift in Sources */,
 				5FB137B32735BD8100E709C5 /* ProfileView.swift in Sources */,
 				5FB137A627321E8100E709C5 /* BrowseView.swift in Sources */,
+				5F313002288CD49C00B281E6 /* PlainGroupBoxStyle.swift in Sources */,
 				5FCE80542738A5A2006530BD /* LikeAnimationView.swift in Sources */,
 				5FB137A42731FC1500E709C5 /* CommentModel.swift in Sources */,
 				5FB137C12737877500E709C5 /* SettingsEditImageView.swift in Sources */,

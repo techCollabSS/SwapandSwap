@@ -19,7 +19,7 @@ class QueuePlayerUIView: UIView {
         super.init(frame: frame)
         
         // Load Video
-        guard let fileUrl = URL(string: "https://github.com/BLCKBIRDS/Video-Based-Onboarding-Screen-in-SwiftUI/blob/master/video.mp4?raw=true") else { return }
+        guard let fileUrl = Bundle.main.url(forResource: "onboarding", withExtension: "mp4") else { return }
         let playerItem = AVPlayerItem(url: fileUrl)
         
         // Setup Player
@@ -52,7 +52,7 @@ class PlayerUIView: UIView {
         super.init(frame: frame)
         
         // Load Video
-        guard let fileUrl = URL(string: "https://github.com/BLCKBIRDS/Video-Based-Onboarding-Screen-in-SwiftUI/blob/master/video.mp4?raw=true") else { return }
+        guard let fileUrl = Bundle.main.url(forResource: "onboarding", withExtension: "mp4") else { return }
         let playerItem = AVPlayerItem(url: fileUrl)
         
         // Setup Player

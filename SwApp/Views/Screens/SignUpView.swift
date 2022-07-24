@@ -27,13 +27,13 @@ struct SignUpView: View {
                 .fontWeight(.bold)
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
-                .foregroundColor(Color.MyTheme.purpleColor)
+                .foregroundColor(Color.MyTheme.whiteColor)
             
             Text("Click the button below to create an account and join the fun!")
                 .font(.headline)
                 .fontWeight(.medium)
                 .multilineTextAlignment(.center)
-                .foregroundColor(Color.MyTheme.purpleColor)
+                .foregroundColor(Color.MyTheme.whiteColor)
             
             Button(action: {
                 showOnboarding.toggle()
@@ -44,18 +44,18 @@ struct SignUpView: View {
                     .padding()
                     .frame(maxWidth: .infinity)
                     .frame(height: 60)
-                    .background(Color.MyTheme.purpleColor)
+                    .background(Color.MyTheme.orangeColor)
                     .cornerRadius(12)
                     .shadow(radius: 12)
             })
-            .accentColor(Color.MyTheme.yellowColor)
+            .accentColor(Color.MyTheme.whiteColor)
             
             Spacer()
             Spacer()
             
         })
         .padding(.all, 40)
-        .background(Color.MyTheme.yellowColor)
+        .background(PlayerView())
         .edgesIgnoringSafeArea(.all)
         .fullScreenCover(isPresented: $showOnboarding, content: {
             OnboardingView()

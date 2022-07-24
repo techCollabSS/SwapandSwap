@@ -9,13 +9,15 @@ import SwiftUI
 
 struct CarouselView: View {
     
+    @ObservedObject var posts: PostArrayObject
+    
     @State var selection: Int = 1
     let maxCount: Int = 8
     @State var timerAdded: Bool = false
     
     var body: some View {
-        TabView (selection: $selection,
-                 content: {
+        TabView(selection: $selection,
+                     content:  {
             ForEach(1..<maxCount) { count in
                 Image("dog\(count)")
                     .resizable()
@@ -29,9 +31,9 @@ struct CarouselView: View {
             .onAppear (perform: {
                 if !timerAdded {
                     addTimer()
-                }                
+                }
             })
-    }
+        }
     
     //MARK: FUNCTIONS
     
@@ -53,7 +55,7 @@ struct CarouselView: View {
 
 struct CarouselView_Previews: PreviewProvider {
     static var previews: some View {
-        CarouselView()
+        CarouselView(posts: PostArrayObject(shuffled: true))
             .previewLayout(.sizeThatFits)
     }
 }

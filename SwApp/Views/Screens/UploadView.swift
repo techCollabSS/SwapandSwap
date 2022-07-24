@@ -30,10 +30,10 @@ struct UploadView: View {
                     Text("Take Photo".uppercased())
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                        .foregroundColor(Color.MyTheme.yellowColor)
+                        .foregroundColor(Color.MyTheme.whiteColor)
                 })
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                    .background(Color.MyTheme.purpleColor)
+                    .background(Color.MyTheme.orangeColor)
                 
                 Button(action: {
                     sourceType = UIImagePickerController.SourceType.photoLibrary
@@ -43,15 +43,15 @@ struct UploadView: View {
                     Text("Import Photo".uppercased())
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                        .foregroundColor(Color.MyTheme.purpleColor)
+                        .foregroundColor(Color.MyTheme.lightBlueColor)
                 })
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                    .background(Color.MyTheme.yellowColor)
+                    .background(Color.MyTheme.GreyColor)
             }
             .sheet(isPresented: $showImagePicker, onDismiss: segueToPostImageView, content: {
                 ImagePicker(imageSelected: $imageSelected, sourceType: $sourceType)
                     .preferredColorScheme(colorScheme)
-                    .accentColor(colorScheme == .light ? Color.MyTheme.purpleColor : Color.MyTheme.yellowColor)
+                    .accentColor(colorScheme == .light ? Color.MyTheme.whiteColor : Color.MyTheme.whiteColor)
             })
             
             

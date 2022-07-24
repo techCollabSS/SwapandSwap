@@ -27,5 +27,21 @@ extension Color {
         static var whiteColor:Color {
             return Color("ColorWhite")
         }
+        
+        static var GreyColor:Color {
+            return Color("ColorGrey")
+        }
+        
+        static var DarkGreyColor:Color {
+            return Color("ColorDarkGrey")
+        }
+        
+        static var orangeColor:Color {
+            return Color("ColorOrange")
+        }
+        
+        static var lightBlueColor:Color {
+            return Color("ColorLightBlue")
+        }
     }
 }

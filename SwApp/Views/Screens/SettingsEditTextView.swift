@@ -52,10 +52,10 @@ struct SettingsEditTextView: View {
                     .padding()
                     .frame(height: 60)
                     .frame(maxWidth: .infinity)
-                    .background(colorScheme == .light ? Color.MyTheme.purpleColor : Color.MyTheme.yellowColor)
+                    .background(colorScheme == .light ? Color.MyTheme.orangeColor : Color.MyTheme.yellowColor)
                     .cornerRadius(12)
             })
-                .accentColor(colorScheme == .light ? Color.MyTheme.yellowColor : Color.MyTheme.purpleColor)
+                .accentColor(colorScheme == .light ? Color.MyTheme.whiteColor : Color.MyTheme.whiteColor)
             
             Spacer()
             

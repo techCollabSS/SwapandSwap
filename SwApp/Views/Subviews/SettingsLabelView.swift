@@ -18,6 +18,7 @@ struct SettingsLabelView: View {
                 
                 Text(labelText)
                     .fontWeight(.bold)
+                    .accentColor(Color.MyTheme.DarkGreyColor)
                 Spacer()
                 Image(systemName: labelImage)
             }

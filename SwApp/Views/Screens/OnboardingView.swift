@@ -30,13 +30,13 @@ struct OnboardingView: View {
             Text("Welcome to Swap & Swap!")
                 .font(.title)
                 .fontWeight(.bold)
-                .foregroundColor(Color.MyTheme.purpleColor)
+                .foregroundColor(Color.MyTheme.whiteColor)
             
             Text("SwApp is a revolutionary social media platform that allows our users to have a dynamic closet by swapping with other users.")
                 .font(.headline)
                 .fontWeight(.medium)
                 .multilineTextAlignment(.center)
-                .foregroundColor(Color.MyTheme.purpleColor)
+                .foregroundColor(Color.MyTheme.whiteColor)
                 .padding()
             
             //MARK: SIGN IN WITH APPLE
@@ -75,7 +75,7 @@ struct OnboardingView: View {
                     .fontWeight(.medium)
                     .padding()
             })
-                .accentColor(.black)
+            .accentColor(Color.MyTheme.whiteColor)
         }
         .padding(.all, 20)
         .frame(maxWidth: .infinity, maxHeight: .infinity)

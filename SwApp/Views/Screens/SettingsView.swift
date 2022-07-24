@@ -23,46 +23,49 @@ struct SettingsView: View {
             ScrollView(.vertical, showsIndicators: false, content: {
                 
                 //MARK: SECTION 1: SwApp
-                GroupBox(label: SettingsLabelView(labelText: "SwApp", labelImage: "dot.radiowaves.left.and.right"), content: {
+                GroupBox(label: SettingsLabelView(labelText: "Swap & Swap", labelImage: "dot.radiowaves.left.and.right"), content: {
                     HStack(alignment: .center, spacing: 10, content: {
                         
-                        Image("logo")
+                        Image("logo.transparent")
                             .resizable()
                             .scaledToFill()
                             .frame(width: 80, height: 80, alignment: .center)
                             .cornerRadius(12)
                         
-                        Text("SwApp is a revolutionary social media platform that allows our users to have a dynamic closet by swapping with other users.")
+                        Text("Swap & Swap is a revolutionary social media platform that allows our users to have a dynamic closet by swapping with other users.")
                             .font(.footnote)
+                            .accentColor(Color.MyTheme.DarkGreyColor)
                         
                     })
                 })
+                    .groupBoxStyle(PlainGroupBoxStyle())
                     .padding()
                 
                 //MARK: SECTION 2: PROFILE
                 GroupBox(label: SettingsLabelView(labelText: "Profile", labelImage: "person.fill"), content: {
                     
                     NavigationLink(destination: SettingsEditTextView(submissionText: userDisplayName, title: "Display Name", description: "You can edit your display name here. This will be seen by other users on your profile and on your posts!", placeholder: "Your display name here....", settingsEditTextOption: .displayName, profileText: $userDisplayName), label: {
-                        SettingsRowView(leftIcon: "pencil", text: "Display Name", color: Color.MyTheme.purpleColor)
+                        SettingsRowView(leftIcon: "pencil", text: "Display Name", color: Color.MyTheme.DarkGreyColor)
                     })
                     
                     NavigationLink(destination: SettingsEditTextView(submissionText: userBio, title: "Profile Bio", description: "Your bio is a great place to let other users know a little about you. It will be shown on your profile only.", placeholder: "Your bio here....", settingsEditTextOption: .bio, profileText: $userBio), label: {
-                        SettingsRowView(leftIcon: "text.quote", text: "Bio", color: Color.MyTheme.purpleColor)
+                        SettingsRowView(leftIcon: "text.quote", text: "Bio", color: Color.MyTheme.DarkGreyColor)
                     })
                     
                     NavigationLink(destination: SettingsEditImageView(title: "Profile Picture", description: "Your profile picture will be shown on your prifle and on your posts. Most users make it an image of themselves with their clothing style!", selectedImage: userProfilePicture, profileImage: $userProfilePicture), label: {
-                        SettingsRowView(leftIcon: "photo", text: "Profile Picture", color: Color.MyTheme.purpleColor)
+                        SettingsRowView(leftIcon: "photo", text: "Profile Picture", color: Color.MyTheme.DarkGreyColor)
                     })
                     
                     Button(action: {
                         signOut()
                     }, label: {
-                        SettingsRowView(leftIcon: "figure.walk", text: "Sign out", color: Color.MyTheme.purpleColor)
+                        SettingsRowView(leftIcon: "figure.walk", text: "Sign out", color: Color.MyTheme.DarkGreyColor)
                     })
                         .alert(isPresented: $showSignOutError, content: {
                             return Alert(title: Text("Error Signing Out 🥵"))
                         })
                 })
+                    .groupBoxStyle(PlainGroupBoxStyle())
                     .padding()
                 
                 //MARK: SECTION 3: APPLICATION
@@ -86,19 +89,22 @@ struct SettingsView: View {
                         SettingsRowView(leftIcon: "globe", text: "SwApp's Website", color: Color.MyTheme.yellowColor)
                     })
                 })
+                    .groupBoxStyle(PlainGroupBoxStyle())
                     .padding()
                 
                 //MARK: SECTION 4: SIGN OFF
                 GroupBox {
-                    Text("SwApp was made with love. \n All rights Reserved \n Our Company Name Inc. \n Copyright 2021 ❤️")
+                    Text("Swap & Swap was made with love. \n All rights Reserved \n Swap & Swap LLC. \n Copyright 2021 ❤️")
                         .foregroundColor(.gray)
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity)
                 }
+                .groupBoxStyle(PlainGroupBoxStyle())
                 .padding()
                 .padding(.bottom, 80)
                 
             })
+                .accentColor(Color.MyTheme.DarkGreyColor)
                 .navigationBarTitle("Settings")
                 .navigationBarTitleDisplayMode(.large)
                 .navigationBarItems(leading:
@@ -108,10 +114,9 @@ struct SettingsView: View {
                                             Image(systemName: "xmark")
                                                 .font(.title)
                                         })
-                                        .accentColor(.primary)
                     )
         }
-        .accentColor(colorScheme == .light ? Color.MyTheme.purpleColor : Color.MyTheme.yellowColor)
+        .accentColor(colorScheme == .light ? Color.MyTheme.DarkGreyColor : Color.MyTheme.yellowColor)
     }
     //MARK: FUNCTIONS
     

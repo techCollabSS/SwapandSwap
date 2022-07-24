@@ -46,10 +46,10 @@ struct SettingsEditImageView: View {
                     .padding()
                     .frame(height: 60)
                     .frame(maxWidth: .infinity)
-                    .background(Color.MyTheme.yellowColor)
+                    .background(Color.MyTheme.orangeColor)
                     .cornerRadius(12)
             })
-                .accentColor(Color.MyTheme.purpleColor)
+                .accentColor(Color.MyTheme.whiteColor)
                 .sheet(isPresented: $showImagePicker, content: {
                     ImagePicker(imageSelected: $selectedImage, sourceType: $sourceType)
                 })
@@ -63,10 +63,10 @@ struct SettingsEditImageView: View {
                     .padding()
                     .frame(height: 60)
                     .frame(maxWidth: .infinity)
-                    .background(Color.MyTheme.purpleColor)
+                    .background(Color.MyTheme.DarkGreyColor)
                     .cornerRadius(12)
             })
-                .accentColor(Color.MyTheme.yellowColor)
+                .accentColor(Color.MyTheme.lightBlueColor)
             
             Spacer()
             
