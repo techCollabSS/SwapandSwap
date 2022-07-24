@@ -17,22 +17,22 @@ struct CarouselView: View {
     
     var body: some View {
         TabView(selection: $selection,
-                     content:  {
-            ForEach(1..<maxCount) { count in
-                Image("dog\(count)")
-                    .resizable()
-                    .scaledToFill()
-                    .tag(count)
-            }
-        })
-            .tabViewStyle(PageTabViewStyle())
-            .frame(height: 300)
-            .animation(.default, value: selection)
-            .onAppear (perform: {
-                if !timerAdded {
-                    addTimer()
-                }
-            })
+                       content:  {
+                           ForEach(1..<maxCount) { count in
+                               Image("dog\(count)")
+                                   .resizable()
+                                   .scaledToFill()
+                                   .tag(count)
+                           }
+                       })
+                   .tabViewStyle(PageTabViewStyle())
+                   .frame(height: 300)
+                   .animation(.default)
+                   .onAppear(perform: {
+                       if !timerAdded {
+                           addTimer()
+                       }
+                   })
         }
     
     //MARK: FUNCTIONS

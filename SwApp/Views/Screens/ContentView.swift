@@ -21,24 +21,26 @@ struct ContentView: View {
     var body: some View {
         TabView {
             NavigationView {
-                FeedView(posts: feedPosts, title: "Feed")
+                FeedView(posts: feedPosts, title: "Home")
             }
                 .tabItem {
-                    Image(systemName: "book.fill")
-                    Text("Feed")
+                    Image(systemName: "house.fill")
+                    Text("Home")
                 }
+            
+            UploadView()
+                .tabItem {
+                    //Image(systemName: "square.and.arrow.up.fill")
+                    Image(systemName: "square.and.arrow.up.fill")
+                    Text("Post")
+                }
+            
             NavigationView {
                 BrowseView(posts: browsePosts)
             }
                 .tabItem {
                     Image(systemName: "magnifyingglass")
-                    Text("Browse")
-                }
-            
-            UploadView()
-                .tabItem {
-                    Image(systemName: "square.and.arrow.up.fill")
-                    Text("Upload")
+                    Text("Search")
                 }
             
             ZStack {
@@ -52,7 +54,7 @@ struct ContentView: View {
                     }
                 }
                 .tabItem {
-                    Image(systemName: "person.fill")
+                    Image(systemName: "person.crop.circle.fill")
                     Text("Profile")
             }
         }

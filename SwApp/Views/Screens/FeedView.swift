@@ -21,6 +21,7 @@ struct FeedView: View {
             }
             
         })
+        .background(Color.MyTheme.beigeColor.ignoresSafeArea(.all))
         .navigationBarTitle(title)
         .navigationBarTitleDisplayMode(.inline)
     }

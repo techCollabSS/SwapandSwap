@@ -14,6 +14,7 @@ struct PostView: View {
     
     @State var animateLike: Bool = false
     @State var addHeartAnimationToView: Bool = false
+    @State var defaultPadding: Bool = true
     
     @State var showActionSheet: Bool = false
     @State var actionSheetType: PostActionSheetOption = .general
@@ -70,8 +71,7 @@ struct PostView: View {
                             getActionSheet()
                         })
                 }
-                .padding(.all, 6)
-                
+                .padding()
             }
             
             //MARK: IMAGE
@@ -80,13 +80,14 @@ struct PostView: View {
                 Image(uiImage: postImage)
                     .resizable()
                     .scaledToFill()
+                    .cornerRadius(12)
+                    .padding(defaultPadding == true ? 15:0)
                     .onTapGesture(count: 2) {
                         if !post.likedByUser {
                             likePost()
                             AnalyticsService.instance.likePostDoubleTap()
                         }
                     }
-                
                 if addHeartAnimationToView {
                     LikeAnimationView(animate: $animateLike)
                 }
@@ -131,7 +132,8 @@ struct PostView: View {
                     
                     Spacer()
                 })
-                .padding(.all, 6)
+                .padding(.leading, 15)
+                .padding(.bottom, 12)
                 
                 if let caption = post.caption {
                    
@@ -140,10 +142,16 @@ struct PostView: View {
                         
                         Spacer(minLength: 0)
                     }
-                    .padding(.all, 6)
+                    .padding(.bottom, 25)
+                    .padding(.leading, 15)
                 }
             }
         })
+            .background(Color.MyTheme.whiteColor)
+            .cornerRadius(12)
+            .padding(.leading, defaultPadding == true ? 15:0)
+            .padding(.trailing, defaultPadding == true ? 15:0)
+            .padding(.bottom, defaultPadding == true ? 10:0)
             .onAppear {
                 getImages()
             }
@@ -286,7 +294,7 @@ struct PostView_Previews: PreviewProvider {
     static var post: PostModel = PostModel(postID: "", userID: "", username: "Joe Green", caption: "This is a test caption", dateCreated: Date(), likeCount: 0, likedByUser: false)
     
     static var previews: some View {
-        PostView(post: post, showHeaderAndFooter: true, addHeartAnimationToView: true)
+        PostView(post: post, showHeaderAndFooter: true, addHeartAnimationToView: true, defaultPadding: true)
             .previewLayout(.sizeThatFits)
     }
 }
