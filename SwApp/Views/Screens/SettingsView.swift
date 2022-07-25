@@ -86,7 +86,7 @@ struct SettingsView: View {
                     Button(action: {
                         openCustomURL(urlString: "https://www.google.com")  //INSERT SWAPP'S HOME PAGE WEBSITE
                     }, label: {
-                        SettingsRowView(leftIcon: "globe", text: "SwApp's Website", color: Color.MyTheme.yellowColor)
+                        SettingsRowView(leftIcon: "globe", text: "Swap & Swap Website", color: Color.MyTheme.yellowColor)
                     })
                 })
                     .groupBoxStyle(PlainGroupBoxStyle())

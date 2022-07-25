@@ -23,6 +23,7 @@ struct PostView: View {
     @State var postImage: UIImage = UIImage(named: "logo.loading")!
     
     @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
+    @AppStorage(CurrentUserDefaults.displayName) var currentUserDisplayName: String?
     
     // Alerts
     @State var alertTitle: String = ""
@@ -98,30 +99,54 @@ struct PostView: View {
             if showHeaderAndFooter {
                 HStack(alignment: .center, spacing: 20, content: {
                     
-                    Button(action: {
-                        if post.likedByUser {
-                            //unlike
-                            unlikePost()
-                        } else {
-                            //like
-                            likePost()
-                            AnalyticsService.instance.likePostHeartPressed()
+                    // IMPROVEMENT: Research the way to implement this in a function
+                    if currentUserID != nil {
+                        Button(action: {
+                            if post.likedByUser {
+                                //unlike
+                                unlikePost()
+                            } else {
+                                //like
+                                likePost()
+                                AnalyticsService.instance.likePostHeartPressed()
+                            }
+                        }, label: {
+                            Image(systemName: post.likedByUser ? "heart.fill" : "heart")
+                                .font(.title3)
+                        })
+                            .accentColor(post.likedByUser ? .red : .primary)
+                        
+                    } else {
+                        NavigationLink(
+                            destination: SignUpView(),
+                            label: {
+                                Image(systemName: post.likedByUser ? "heart.fill" : "heart")
+                                    .font(.title3)
+                                    .foregroundColor(.primary)
+                            })
                         }
-                    }, label: {
-                        Image(systemName: post.likedByUser ? "heart.fill" : "heart")
-                            .font(.title3)
-                    })
-                        .accentColor(post.likedByUser ? .red : .primary)
                     
                 //MARK: COMMENT ICON
-                    NavigationLink(
-                        destination: CommentsView(post: post),
-                        label: {
-                            Image(systemName: "bubble.middle.bottom")
-                                .font(.title3)
-                                .foregroundColor(.primary)
+                    if currentUserID != nil {
+                        NavigationLink(
+                            destination: CommentsView(post: post),
+                            label: {
+                                Image(systemName: "bubble.middle.bottom")
+                                    .font(.title3)
+                                    .foregroundColor(.primary)
 
-                        })
+                            })
+                    } else {
+                        NavigationLink(
+                            destination: SignUpView(),
+                            label: {
+                                Image(systemName: "bubble.middle.bottom")
+                                    .font(.title3)
+                                    .foregroundColor(.primary)
+                            })
+                        }
+                    
+                    //MARK: SHARE ICON
                     Button(action: {
                         sharePost()
                     }, label: {
@@ -162,8 +187,7 @@ struct PostView: View {
     
     //MARK: FUNCTIONS
     
-    func likePost() {
-        
+     func likePost() {
         guard let userID = currentUserID else {
             print("CANNOT FIND USERID WHILE LIKING POST")
             return
@@ -172,7 +196,6 @@ struct PostView: View {
         //Update local data (POST MODEL)
         let updatePost = PostModel(postID: post.postID, userID: post.userID, username: post.username, caption: post.caption, dateCreated: post.dateCreated, likeCount: post.likeCount + 1, likedByUser: true)
         self.post = updatePost // Updated version of post
-        
         // Animte UI
         animateLike = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
@@ -184,7 +207,6 @@ struct PostView: View {
     }
     
     func unlikePost() {
-        
         guard let userID = currentUserID else {
             print("CANNOT FIND USERID WHILE UNLIKING POST")
             return
@@ -273,7 +295,7 @@ struct PostView: View {
     
     func sharePost() {
         
-        let message = "Check out this post on Swapp!"
+        let message = "Check out this post on Swap & Swap!"
         let image = postImage
         let link = URL(string: "https://www.google.com")! //TO DO: Link back to the app LATER. Check questions on video 24
         
