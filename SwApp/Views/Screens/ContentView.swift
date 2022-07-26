@@ -31,8 +31,8 @@ struct ContentView: View {
             UploadView()
                 .tabItem {
                     //Image(systemName: "square.and.arrow.up.fill")
-                    Image(systemName: "square.and.arrow.up.fill")
-                    Text("Post")
+                    Image(systemName: "arrow.triangle.swap")
+                    Text("Swap")
                 }
             
             NavigationView {

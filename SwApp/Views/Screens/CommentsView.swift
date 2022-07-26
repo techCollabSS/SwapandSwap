@@ -28,10 +28,8 @@ struct CommentsView: View {
                 LazyVStack {
                     ForEach(commentArray, id: \.self) { comment in
                         MessageView(comment: comment)
-                        
                     }
                 }
-
             }
             
             // Bottom HStack

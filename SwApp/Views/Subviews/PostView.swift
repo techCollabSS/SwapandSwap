@@ -43,7 +43,7 @@ struct PostView: View {
                 HStack {
                     
                     NavigationLink(
-                        destination: LazyView(content: { // Lazy View Avoids the repeated loading of an Item.
+                        destination: LazyView(content: { // NOTE: Lazy View Avoids the repeated loading of an Item.
                             ProfileView(isMyProfile: false, profileUserID: post.userID, profileDisplayName: post.username, posts: PostArrayObject(userID: post.userID))
                         }),
                         label: {
@@ -174,8 +174,8 @@ struct PostView: View {
         })
             .background(Color.MyTheme.whiteColor)
             .cornerRadius(12)
-            .padding(.leading, defaultPadding == true ? 15:0)
-            .padding(.trailing, defaultPadding == true ? 15:0)
+            .padding(.leading, defaultPadding == true ? 15:7)
+            .padding(.trailing, defaultPadding == true ? 15:7)
             .padding(.bottom, defaultPadding == true ? 10:0)
             .onAppear {
                 getImages()
