@@ -9,6 +9,7 @@
 
 import Foundation
 
+
 struct DatabaseUserField { // Fields within the User Document in Database
     
     static let displayName = "display_name"
@@ -58,6 +59,22 @@ struct CurrentUserDefaults { // Fields for UserDefaults saved within app
     static let bio = "bio"
     static let userID = "user_id"
 }
+
+struct FirebaseConstants {
+    
+    static let fromId = "fromId"
+    static let toId = "toId"
+    static let text = "text"
+    static let timestamp = "timestamp"
+    static let displayName = "displayName"
+    static let profileImageUrl = "profileImageUrl"
+    static let messages = "messages"
+    static let users = "users"
+    static let recentMessages = "recent_messages"
+    static let messageID = "messageID"
+
+}
+
 
 enum SettingsEditTextOption {
     case displayName

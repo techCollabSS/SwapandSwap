@@ -10,6 +10,7 @@ pod 'Firebase/Auth'
 pod 'Firebase/Firestore'
 pod 'FirebaseFirestoreSwift'
 pod 'Firebase/Storage'
+pod 'SDWebImageSwiftUI'
 
 pod 'GoogleSignIn','~> 5.0.0'
 

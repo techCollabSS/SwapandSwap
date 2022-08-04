@@ -21,6 +21,7 @@ class DataService {
     
     @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
     
+    
     // MARK: CREATE FUNCTION
     
     func uploadPost(image: UIImage, caption: String?, displayName: String, userID: String, handler: @escaping (_ success: Bool) -> ()) {

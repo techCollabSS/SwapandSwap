@@ -8,17 +8,20 @@
 import SwiftUI
 
 struct DefaultHeaderView: View {
-    
-    let outgoingMessaageBubble = Color(#colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1))
-    let unreadIndicator = Color(#colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1))
-    
+        
     var profileUserID: String
+    
+    let usersModel = CreateMessageArrayObject()
+    
+    let recentMessages = RecentMessagesService()
+
     @State var profileDisplayName: String
     
     @State private var search: String = ""
     
     @AppStorage(CurrentUserDefaults.userID) var currentUserID: String? // If user has a value, be String. If not, then nil. AppStorage is the SwiftUI version of calling user defaults.
     @AppStorage(CurrentUserDefaults.displayName) var currentUserDisplayName: String?
+    
     
     @State var profileImage: UIImage = UIImage(named: "logo.loading")!
 
@@ -46,7 +49,8 @@ struct DefaultHeaderView: View {
                     if currentUserID != nil , currentUserID != nil {
                         NavigationLink(
                             destination: LazyView(content: { // NOTE: Lazy View Avoids the repeated loading of an Item.
-                                ChatMessagesView()
+                                ChatMessagesView(recentMessageService: recentMessages)
+                                 //CreateNewMessageView(vm: usersModel)
                             }),
                             label: {
                                 Image(systemName: "text.bubble.fill")
@@ -104,18 +108,23 @@ struct DefaultHeaderView: View {
     // MARK: FUNCTIONS
     
     func getProfileImage() {
+        if currentUserID != nil {
+
         ImageManager.instance.downloadProfileImage(userID: profileUserID) { (returnedImage) in
             if let image = returnedImage {
                 self.profileImage = image
             }
         }
     }
-    
+}
     func getAdditionalProfileInfo() {
-        AuthService.instance.getUserInfo(forUserID: profileUserID) { (returnedDisplayName, returnedBio) in
-            if let displayName = returnedDisplayName {
-                self.profileDisplayName = displayName
+        if currentUserID != nil {
+            AuthService.instance.getUserInfo(forUserID: profileUserID) { (returnedDisplayName, returnedBio) in
+                if let displayName = returnedDisplayName {
+                    self.profileDisplayName = displayName
+                }
             }
+            
         }
     }
 }

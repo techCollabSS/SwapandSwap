@@ -17,16 +17,6 @@ struct BrowseView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false, content: {
             //CarouselView(posts: posts)
-            LazyVStack{
-                if let userID = currentUserID, let displayname = currentUserDisplayName {
-                    VStack{
-                        DefaultHeaderView(profileUserID: userID, profileDisplayName: displayname)
-                    }
-                } else {
-                    SignUpView()
-                    }
-            }
-            
             
             Text("Items to Swap")
                 .multilineTextAlignment(.center)

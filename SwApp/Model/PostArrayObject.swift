@@ -13,6 +13,7 @@ class PostArrayObject: ObservableObject {
     @Published var postCountString = "0"
     @Published var likeCountString = "0"
     
+    
     /// USED FOR SINGLE POST SELECTION
     init(post: PostModel) {
         self.dataArray.append(post)

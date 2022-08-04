@@ -10,6 +10,7 @@ import SwiftUI
 struct PostView: View {
     
     @State var post: PostModel
+
     var showHeaderAndFooter: Bool =  true
     
     @State var animateLike: Bool = false
@@ -41,7 +42,6 @@ struct PostView: View {
             //MARK: HEADER
             if showHeaderAndFooter {
                 HStack {
-                    
                     NavigationLink(
                         destination: LazyView(content: { // NOTE: Lazy View Avoids the repeated loading of an Item.
                             ProfileView(isMyProfile: false, profileUserID: post.userID, profileDisplayName: post.username, posts: PostArrayObject(userID: post.userID))
@@ -56,7 +56,7 @@ struct PostView: View {
                             Text(post.username)
                                 .font(.callout)
                                 .fontWeight(.medium)
-                                .foregroundColor(.primary)
+                                .foregroundColor(Color.MyTheme.DarkGreyColor)
                     })
                     
                     Spacer()
@@ -67,7 +67,7 @@ struct PostView: View {
                         Image(systemName: "ellipsis")
                             .font(.headline)
                     })
-                        .accentColor(.primary)
+                        .accentColor(Color.MyTheme.DarkGreyColor)
                         .actionSheet(isPresented: $showActionSheet, content: {
                             getActionSheet()
                         })
@@ -133,7 +133,7 @@ struct PostView: View {
                             label: {
                                 Image(systemName: "bubble.middle.bottom")
                                     .font(.title3)
-                                    .foregroundColor(.primary)
+                                    .foregroundColor(Color.MyTheme.DarkGreyColor)
 
                             })
                     } else {
@@ -142,7 +142,7 @@ struct PostView: View {
                             label: {
                                 Image(systemName: "bubble.middle.bottom")
                                     .font(.title3)
-                                    .foregroundColor(.primary)
+                                    .foregroundColor(Color.MyTheme.DarkGreyColor)
                             })
                         }
                     
@@ -153,7 +153,7 @@ struct PostView: View {
                         Image(systemName: "paperplane")
                             .font(.title3)
                     })
-                        .accentColor(.primary)
+                    .accentColor(Color.MyTheme.DarkGreyColor)
                     
                     Spacer()
                 })

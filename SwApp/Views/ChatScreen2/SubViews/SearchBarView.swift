@@ -12,6 +12,7 @@ struct SearchBarView: View {
     let outgoingMessaageBubble = Color(#colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1))
     let searchBg = Color(#colorLiteral(red: 0.462745098, green: 0.462745098, blue: 0.5019607843, alpha: 1))
     let unreadIndicator = Color(#colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1))
+    
     @State private var search: String = ""
     
     var body: some View {

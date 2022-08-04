@@ -13,8 +13,6 @@ import Firebase
 @main
 struct SwAppApp: App {
     
-    
-    
     init(){
         FirebaseApp.configure()
         

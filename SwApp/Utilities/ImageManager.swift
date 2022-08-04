@@ -53,7 +53,6 @@ class ImageManager {
     }
     
     func downloadProfileImage(userID: String, handler: @escaping (_ image: UIImage?) -> ()) {
-        
         // Get path where the image is saved
         let path = getProfileImagePath(userID: userID)
         

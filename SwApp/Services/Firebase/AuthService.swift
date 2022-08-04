@@ -16,7 +16,6 @@ let DB_BASE = Firestore.firestore()
 
 class AuthService {
     
-    
     // MARK: PROPERTIES
     
     static let instance = AuthService()
