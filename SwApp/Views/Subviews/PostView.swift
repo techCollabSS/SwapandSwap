@@ -116,7 +116,7 @@ struct PostView: View {
                             label: {
                                 Image("swap.sflogo")
                                     .font(.title2)
-                                    .foregroundColor(Color.MyTheme.DarkGreyColor)
+                                    .foregroundColor(Color.MyTheme.orangeColor)
                             })
                         }
 
@@ -134,6 +134,7 @@ struct PostView: View {
                         }, label: {
                             Image(systemName: post.likedByUser ? "heart.fill" : "heart")
                                 .font(.title3)
+                                .foregroundColor(Color.MyTheme.DarkGreyColor)
                         })
                             .accentColor(post.likedByUser ? .red : .primary)
                         
@@ -143,7 +144,7 @@ struct PostView: View {
                             label: {
                                 Image(systemName: post.likedByUser ? "heart.fill" : "heart")
                                     .font(.title3)
-                                    .foregroundColor(.primary)
+                                    .foregroundColor(Color.MyTheme.DarkGreyColor)
                             })
                         }
                     

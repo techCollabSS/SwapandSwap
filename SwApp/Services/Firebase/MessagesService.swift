@@ -141,6 +141,7 @@ class MessagesService: ObservableObject {
                                                                chatUserId: toUserId,
                                                                chatDisplayName: toDisplayName,
                                                                lastMessageText: text,
+                                                               read:true,
                                                                timestamp: Date())
                     
                     let fromDocument = self.REF_MESSAGES.document(fromUserId).collection("recents").document(toUserId)
@@ -161,6 +162,7 @@ class MessagesService: ObservableObject {
                                                              chatUserId: fromUserId,
                                                              chatDisplayName: fromDisplayName,
                                                              lastMessageText: text,
+                                                             read:false,
                                                              timestamp: Date())
 
                     let toDocument = self.REF_MESSAGES.document(toUserId).collection("recents").document(fromUserId)

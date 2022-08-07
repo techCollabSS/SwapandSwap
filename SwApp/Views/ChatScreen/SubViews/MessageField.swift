@@ -29,9 +29,13 @@ struct MessageField: View {
                 
                 Button {
                     if let fromUserId = currentUserID, let fromDisplayName = currentUserDisplayName {
-                        messagesService.sendMessage(text: message, fromUserId: fromUserId, fromDisplayName: fromDisplayName, toUserId: toUserId!, toDisplayName: toUserDisplayName!)
-                        message = ""
-                        print("Message Sent!!")
+                        if message.isEmpty {
+                            print("Tried sending empty string as a message")
+                        } else {
+                            messagesService.sendMessage(text: message, fromUserId: fromUserId, fromDisplayName: fromDisplayName, toUserId: toUserId!, toDisplayName: toUserDisplayName!)
+                            message = ""
+                            print("Message Sent!!")
+                        }
                     }
                     
                 } label: {
@@ -71,7 +75,12 @@ struct CustomTexField: View {
                 placeholder
                     .opacity(0.5)
             }
-            TextField("", text: $messageText, onEditingChanged: editingChanged, onCommit: commit)
+            TextEditor(text: $messageText)
+                .padding(.top, 6)
+
+        }
+        .onAppear() {
+            UITextView.appearance().backgroundColor = .clear
         }
     }
 }

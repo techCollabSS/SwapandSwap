@@ -20,27 +20,33 @@ struct ChatTitleRowView: View {
         
         if currentUserID != nil {
             HStack {
-                Image(uiImage: profileImage)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 50, height: 50)
-                    .cornerRadius(50)
                 
+                NavigationLink(
+                    destination: LazyView(content: { // NOTE: Lazy View Avoids the repeated loading of an Item.
+                        ProfileView(isMyProfile: false, profileUserID: toUserId!, profileDisplayName: toUserDisplayName!, posts: PostArrayObject(userID: toUserId!))
+                    }),label: {
+                        Image(uiImage: profileImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 50, height: 50)
+                            .cornerRadius(50)
+                })
                 VStack(alignment: .leading){
                     Text(toUserDisplayName!)
                         .font(.title.bold())
                     
-                    Text("Online")
-                    .font(.caption)
-                    .foregroundColor(Color.MyTheme.DarkGreyColor)
-                }
+//                            Text("Online")
+//                            .font(.caption)
+//                            .foregroundColor(Color.MyTheme.DarkGreyColor)
+            }
                 .frame(maxWidth: .infinity, alignment:  .leading)
+
                 
-                Image(systemName: "phone.fill")
-                    .foregroundColor(Color.MyTheme.DarkGreyColor)
-                    .padding(10)
-                    .background(Color.MyTheme.whiteColor)
-                    .cornerRadius(50)
+//                Image(systemName: "phone.fill")
+//                    .foregroundColor(Color.MyTheme.DarkGreyColor)
+//                    .padding(10)
+//                    .background(Color.MyTheme.whiteColor)
+//                    .cornerRadius(50)
             }
             .padding()
             .onAppear {

@@ -12,6 +12,7 @@ struct RecentMessageModel: Identifiable, Codable, Hashable {
     var chatUserId: String
     var chatDisplayName: String
     var lastMessageText: String
+    var read: Bool
     var timestamp: Date
 
    // var received: Bool // If the user is the sender then False

@@ -20,19 +20,18 @@ struct ChatMessagesView: View {
     
     var body: some View {
         
+        ScrollViewReader { proxy in
         ScrollView {
-            
                 VStack {
                     ForEach(recentMessageService.recentMessages, id: \.id) { message in
                         RecentMessagesView(recentMessage: message)
+                        
                 }
             }
-
         }
         .navigationBarTitle("Recent Messages")
-        
         newMessageButton
-
+        }
     }
     
     
@@ -59,17 +58,7 @@ struct ChatMessagesView: View {
     
     // MARK: FUNCTIONS
     
-//    func  reloadRecentMessages() {
-//
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-//
-//            RecentMessagesService.instance.getAllRecentMessages { (returnedPosts) in
-//
-//                recentMessageService = returnedPosts
-//
-//            }
-//        }
-//    }
+
     
 }
 struct ChatMessagesView_Previews: PreviewProvider {

@@ -14,6 +14,8 @@ class RecentMessagesService: ObservableObject {
     
     static let instance = RecentMessagesService()
     
+    @Published private(set) var recentText = ""
+    
     @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
                 
     @Published private(set) var recentMessages: [RecentMessageModel] = []
@@ -61,6 +63,7 @@ class RecentMessagesService: ObservableObject {
                 let chatUserId = i.get("chatUserId") as! String
                 let chatDisplayName = i.get("chatDisplayName") as! String
                 let lastMessageText = i.get("lastMessageText") as! String
+                let read = i.get("read") as! Bool
                 let timestamp = i.get("timestamp") as! Timestamp
 
                 if id != self.currentUserID! {
@@ -69,6 +72,7 @@ class RecentMessagesService: ObservableObject {
                                                                   chatUserId: chatUserId,
                                                                   chatDisplayName: chatDisplayName,
                                                                   lastMessageText: lastMessageText,
+                                                                  read: read,
                                                                   timestamp: timestamp.dateValue()))
                     
                     }
@@ -79,27 +83,44 @@ class RecentMessagesService: ObservableObject {
                 self.empty = true
                 }
                 
+                if let recentText = self.recentMessages.last?.lastMessageText {
+                    self.recentText = recentText
+                }
+                
             }
             
         }
     }
     
-    func recentMessageTest(userId: String, handler: @escaping (_ lastMessageText: String?, _ timestamp: Date?) -> ()) {
+    func recentMessageOnAppear(userId: String, handler: @escaping (_ lastMessageText: String?, _ read: Bool?, _ timestamp: Date?) -> ()) {
         
         REF_MESSAGES.document(currentUserID!).collection("recents").document(userId).getDocument { (documentSnapshot, error) in
             if let document = documentSnapshot,
                let lastMessageText = document.get("lastMessageText") as? String,
+               let read = document.get("read") as? Bool,
                let timestamp = document.get("timestamp") as? Timestamp {
                 print("Success getting user Recent Messages")
-                handler(lastMessageText, timestamp.dateValue())
+                handler(lastMessageText, read, timestamp.dateValue())
                 return
             } else {
-                print("Error getting user Recen Messages")
-                handler(nil, nil)
+                print("Error getting user Recent Messages")
+                handler(nil, nil, nil)
                 return
             }
         }
         
+    }
+    
+    func updateRecentsOnRead (fromUserId: String, toUserId: String, read: Bool) {
+        
+        // Update From Recents
+        self.db.collection("messages").document(fromUserId).collection("recents").document(toUserId).updateData(["read":read])
+        
+        // Update To Recents
+        self.db.collection("messages").document(toUserId).collection("recents").document(fromUserId).updateData(["read":read])
+        
+        print("Success Reading Recent Message")
+
     }
     
 }

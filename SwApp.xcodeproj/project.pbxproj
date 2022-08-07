@@ -188,13 +188,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5F0DB7292893641700B6AE63 /* ChatScreen2 */ = {
+		5F0DB7292893641700B6AE63 /* ChatScreen */ = {
 			isa = PBXGroup;
 			children = (
 				5F0DB72A2893641F00B6AE63 /* Views */,
 				5F0DB72B2893642F00B6AE63 /* SubViews */,
 			);
-			path = ChatScreen2;
+			path = ChatScreen;
 			sourceTree = "<group>";
 		};
 		5F0DB72A2893641F00B6AE63 /* Views */ = {
@@ -337,7 +337,7 @@
 		5FB137902730DE3E00E709C5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5F0DB7292893641700B6AE63 /* ChatScreen2 */,
+				5F0DB7292893641700B6AE63 /* ChatScreen */,
 				5FB137922730DE6300E709C5 /* Subviews */,
 				5FB137912730DE5600E709C5 /* Screens */,
 			);
@@ -864,7 +864,7 @@
 				CODE_SIGN_ENTITLEMENTS = SwApp/SwApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"SwApp/Preview Content\"";
 				DEVELOPMENT_TEAM = UQL9NN2H9X;
@@ -1023,7 +1023,7 @@
 				CODE_SIGN_ENTITLEMENTS = SwApp/SwApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"SwApp/Preview Content\"";
 				DEVELOPMENT_TEAM = UQL9NN2H9X;

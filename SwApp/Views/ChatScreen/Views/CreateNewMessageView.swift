@@ -44,7 +44,7 @@ struct CreateNewMessageView: View {
         if search.isEmpty {
             return vm.users
         } else {
-            return vm.users.filter { $0.displayName.localizedCaseInsensitiveContains(search) }
+            return vm.users.filter { $0.displayName.localizedStandardContains(search) }
         }
 
     }

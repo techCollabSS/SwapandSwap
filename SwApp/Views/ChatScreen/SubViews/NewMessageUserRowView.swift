@@ -30,7 +30,7 @@ struct NewMessageUserRowView: View {
                     .clipped()
                     .cornerRadius(50)
                     .overlay(RoundedRectangle(cornerRadius: 50)
-                                .stroke(Color(.label), lineWidth: 2)
+                        .stroke(Color.MyTheme.yellowColor, lineWidth: 2)
                     )
                 Text(user.displayName)
                     .foregroundColor(Color(.label))

@@ -14,8 +14,9 @@ struct RecentMessagesView: View {
     @State var recentMessageText: String = ""
     
     @State var recentTimestamp: Date?
-
-            
+    
+    @State var recentRead: Bool?
+    
     @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
 
     @State var profileImage: UIImage = UIImage(named: "logo.loading")!
@@ -24,7 +25,9 @@ struct RecentMessagesView: View {
 
                     NavigationLink(
                         destination: LazyView(content: { // NOTE: Lazy View Avoids the repeated loading of an Item.
-                            ChatSendMessageView(toUserId: recentMessage.chatUserId, toUserDisplayName: recentMessage.chatDisplayName)
+                            ChatSendMessageView(toUserId: recentMessage.chatUserId, toUserDisplayName: recentMessage.chatDisplayName).onAppear {
+                                readRecentMessage(fromUserId: currentUserID!, toUserId: recentMessage.chatUserId, read: true)
+                            }
                         }), label: {
                         HStack(spacing: 16) {
                             Image(uiImage:  profileImage)
@@ -34,7 +37,7 @@ struct RecentMessagesView: View {
                                 .clipped()
                                 .cornerRadius(64)
                                 .overlay(RoundedRectangle(cornerRadius: 64)
-                                            .stroke(Color.black, lineWidth: 1))
+                                    .stroke(Color.MyTheme.yellowColor, lineWidth: 1))
                                 .shadow(radius: 5)
                             
                             
@@ -50,13 +53,17 @@ struct RecentMessagesView: View {
                                       
                                       Text(recentMessage.lastMessageText)
                                               .font(.system(size: 14))
-                                              .foregroundColor(Color(.darkGray))
+                                              .truncationMode(.tail)
+                                              .lineLimit(1)
+                                              .foregroundColor(Color.MyTheme.DarkGreyColor)
                                               .multilineTextAlignment(.leading)
                                       
                                   } else {
                                         Text(recentMessageText)
                                             .font(.system(size: 14))
-                                            .foregroundColor(Color(.darkGray))
+                                            .truncationMode(.tail)
+                                            .lineLimit(2)
+                                            .foregroundColor(Color.MyTheme.DarkGreyColor)
                                             .multilineTextAlignment(.leading)
                                     }
                                 }
@@ -64,21 +71,24 @@ struct RecentMessagesView: View {
                             Spacer()
                             
                             
-                            Text("\(recentMessage.timestamp.formatted(.dateTime.hour().minute()))")
+                            Text("\(recentMessage.timestamp.formatted(.dateTime.month().day(.twoDigits).hour(.conversationalDefaultDigits(amPM: .abbreviated)).minute(.twoDigits)))")
                                 .font(.system(size: 14, weight: .semibold))
                                 .foregroundColor(Color(.label))
                         }
                         .padding(.horizontal)
-
                     })
+                    .background(recentMessage.read ? Color.MyTheme.whiteColor : Color.MyTheme.lightBlueColor)
                     .padding(.vertical, 20)
                     .onAppear(perform: {
                         getProfileImage()
                         reloadRecentMessages(userId: recentMessage.chatUserId)
                     })
-                    Divider()
+                    
+        Divider()
+            .frame(height: 0.5)
 
     }
+    
   
     //MARK: FUNCTIONS
     
@@ -97,17 +107,22 @@ struct RecentMessagesView: View {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
 
-            RecentMessagesService.instance.recentMessageTest(userId: userId) { lastMessageText, timestamp in
+            RecentMessagesService.instance.recentMessageOnAppear(userId: userId) { lastMessageText, read, timestamp in
                 recentMessageText = lastMessageText!
+                recentRead = read!
                 recentTimestamp = timestamp
             }
         }
+    }
+    
+    func readRecentMessage (fromUserId: String, toUserId: String, read: Bool) {
+        RecentMessagesService.instance.updateRecentsOnRead(fromUserId: fromUserId, toUserId: toUserId, read: read)
     }
 }
 
 struct RecentMessagesView_Previews: PreviewProvider {
     
-    static var recentMessageModel: RecentMessageModel = RecentMessageModel(id: "", chatUserId: "", chatDisplayName: "", lastMessageText: "", timestamp: Date())
+    static var recentMessageModel: RecentMessageModel = RecentMessageModel(id: "", chatUserId: "", chatDisplayName: "", lastMessageText: "", read: false, timestamp: Date())
 
     static var previews: some View {
         RecentMessagesView(recentMessage: recentMessageModel)
