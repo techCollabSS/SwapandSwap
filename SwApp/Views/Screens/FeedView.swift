@@ -37,6 +37,23 @@ struct FeedView: View {
         .background(Color.MyTheme.beigeColor.ignoresSafeArea(.all))
         .navigationBarTitle(title)
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            reloadFeed()
+            }
+        }
+    
+    // MARK: FUNCTIONS
+    
+    func reloadFeed() {
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+
+         DataService.instance.downloadPostsForFeed { (returnedPosts) in
+
+         posts.dataArray = returnedPosts
+
+            }
+        }
     }
 }
 

@@ -31,7 +31,9 @@ struct ContentView: View {
             UploadView()
                 .tabItem {
                     //Image(systemName: "square.and.arrow.up.fill")
-                    Image(systemName: "arrow.triangle.swap")
+                    Image("swap.sflogo")
+                        .font(.system(size: 24, weight: .regular))
+                    
                     Text("Swap")
                 }
             

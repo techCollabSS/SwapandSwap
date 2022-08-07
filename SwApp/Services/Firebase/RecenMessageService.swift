@@ -12,13 +12,14 @@ import FirebaseFirestoreSwift
 
 class RecentMessagesService: ObservableObject {
     
-    @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
-        
-    @State var toUserId: String?
+    static let instance = RecentMessagesService()
     
-    @Published var recentMessages = [RecentMessageModel]()
+    @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
+                
+    @Published private(set) var recentMessages: [RecentMessageModel] = []
     
     @Published var empty = false
+
 
     private var REF_MESSAGES = DB_BASE.collection("messages")
     
@@ -36,8 +37,7 @@ class RecentMessagesService: ObservableObject {
     
     // MARK: GET FUNCTIONS
     
-    func getAllRecentMessages() {
-
+    func getAllRecentMessages()  {
         if self.currentUserID != nil {
 
             db.collection("messages").document(currentUserID!).collection("recents").getDocuments { (snap, err) in
@@ -70,6 +70,7 @@ class RecentMessagesService: ObservableObject {
                                                                   chatDisplayName: chatDisplayName,
                                                                   lastMessageText: lastMessageText,
                                                                   timestamp: timestamp.dateValue()))
+                    
                     }
                 }
 
@@ -77,7 +78,28 @@ class RecentMessagesService: ObservableObject {
 
                 self.empty = true
                 }
+                
             }
+            
         }
     }
+    
+    func recentMessageTest(userId: String, handler: @escaping (_ lastMessageText: String?, _ timestamp: Date?) -> ()) {
+        
+        REF_MESSAGES.document(currentUserID!).collection("recents").document(userId).getDocument { (documentSnapshot, error) in
+            if let document = documentSnapshot,
+               let lastMessageText = document.get("lastMessageText") as? String,
+               let timestamp = document.get("timestamp") as? Timestamp {
+                print("Success getting user Recent Messages")
+                handler(lastMessageText, timestamp.dateValue())
+                return
+            } else {
+                print("Error getting user Recen Messages")
+                handler(nil, nil)
+                return
+            }
+        }
+        
+    }
+    
 }

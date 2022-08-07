@@ -13,23 +13,40 @@ struct CreateNewMessageView: View {
 
     @ObservedObject var vm: CreateMessageArrayObject
     
-    @State var profileImage: UIImage = UIImage(named: "logo.loading")!
+    @State private var  viewModel = [UserModel]()
+        
+    @State private var search: String = ""
         
     @AppStorage(CurrentUserDefaults.userID) var currentUserID: String? // If user has a value, be String. If not, then nil. AppStorage is the SwiftUI version of calling user defaults.
     
 
     var body: some View {
         
-        if currentUserID != nil {
-            ScrollView {
-                Text(vm.errorMessage)
-                
-                ForEach(vm.users) { user in
-                    NewMessageUserRowView(user: user)
+        VStack {
+            if currentUserID != nil {
+                ScrollView {
+                    Text(vm.errorMessage)
+                    
+//                    ForEach(vm.users) { user in
+//                        NewMessageUserRowView(user: user)
+//                    }
+                    ForEach(filteredUsers!) { user in
+                        NewMessageUserRowView(user: user)
+                    }
                 }
             }
-
         }
+        .searchable(text: $search, placement: .navigationBarDrawer(displayMode: .always))
+    }
+    
+    var filteredUsers: [UserModel]? {
+
+        if search.isEmpty {
+            return vm.users
+        } else {
+            return vm.users.filter { $0.displayName.localizedCaseInsensitiveContains(search) }
+        }
+
     }
 }
 struct CreateNewMessageView_Previews: PreviewProvider {

@@ -56,6 +56,7 @@ struct ProfileView: View {
             .onAppear(perform: {
                 getProfileImage()
                 getAdditionalProfileInfo()
+                reloadProfilePosts()
             })
             .sheet(isPresented: $showSettings, content: {
                 SettingsView(userDisplayName: $profileDisplayName, userBio: $profileBio, userProfilePicture: $profileImage)
@@ -81,6 +82,18 @@ struct ProfileView: View {
             }
             if let bio = returnedBio {
                 self.profileBio = bio
+            }
+        }
+    }
+    
+    
+    func reloadProfilePosts() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+
+         DataService.instance.downloadPostForUser(userID: profileUserID) { (returnedPosts) in
+
+         posts.dataArray = returnedPosts
+
             }
         }
     }

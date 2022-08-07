@@ -50,7 +50,6 @@ struct DefaultHeaderView: View {
                         NavigationLink(
                             destination: LazyView(content: { // NOTE: Lazy View Avoids the repeated loading of an Item.
                                 ChatMessagesView(recentMessageService: recentMessages)
-                                 //CreateNewMessageView(vm: usersModel)
                             }),
                             label: {
                                 Image(systemName: "text.bubble.fill")

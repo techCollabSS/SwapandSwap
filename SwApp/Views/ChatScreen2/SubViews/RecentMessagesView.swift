@@ -11,8 +11,11 @@ struct RecentMessagesView: View {
         
     @State var recentMessage: RecentMessageModel
     
-    @StateObject var recentMessageService = RecentMessagesService()
+    @State var recentMessageText: String = ""
     
+    @State var recentTimestamp: Date?
+
+            
     @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
 
     @State var profileImage: UIImage = UIImage(named: "logo.loading")!
@@ -40,12 +43,26 @@ struct RecentMessagesView: View {
                                     .font(.system(size: 16, weight: .bold))
                                     .foregroundColor(Color(.label))
                                     .multilineTextAlignment(.leading)
-                                Text(recentMessage.lastMessageText)
-                                    .font(.system(size: 14))
-                                    .foregroundColor(Color(.darkGray))
-                                    .multilineTextAlignment(.leading)
+                            
+                              if let recentMessageTextOne = recentMessageText  {
+                                  
+                                  if recentMessageTextOne.isEmpty {
+                                      
+                                      Text(recentMessage.lastMessageText)
+                                              .font(.system(size: 14))
+                                              .foregroundColor(Color(.darkGray))
+                                              .multilineTextAlignment(.leading)
+                                      
+                                  } else {
+                                        Text(recentMessageText)
+                                            .font(.system(size: 14))
+                                            .foregroundColor(Color(.darkGray))
+                                            .multilineTextAlignment(.leading)
+                                    }
+                                }
                             }
                             Spacer()
+                            
                             
                             Text("\(recentMessage.timestamp.formatted(.dateTime.hour().minute()))")
                                 .font(.system(size: 14, weight: .semibold))
@@ -55,9 +72,10 @@ struct RecentMessagesView: View {
 
                     })
                     .padding(.vertical, 20)
-                    .onAppear() {
+                    .onAppear(perform: {
                         getProfileImage()
-                    }
+                        reloadRecentMessages(userId: recentMessage.chatUserId)
+                    })
                     Divider()
 
     }
@@ -71,6 +89,17 @@ struct RecentMessagesView: View {
         ImageManager.instance.downloadProfileImage(userID: recentMessage.chatUserId) { (returnedImage) in
             if let image = returnedImage {
                 self.profileImage = image
+            }
+        }
+    }
+    
+    func  reloadRecentMessages(userId: String) {
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+
+            RecentMessagesService.instance.recentMessageTest(userId: userId) { lastMessageText, timestamp in
+                recentMessageText = lastMessageText!
+                recentTimestamp = timestamp
             }
         }
     }

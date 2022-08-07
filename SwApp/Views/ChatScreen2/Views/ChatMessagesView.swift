@@ -8,35 +8,29 @@
 import SwiftUI
 
 struct ChatMessagesView: View {
-        
-    @State var shouldShowLogOutOptions = false
-    @State private var score = 0
+            
+    @ObservedObject var recentMessageService: RecentMessagesService
     
-    @StateObject var recentMessageService: RecentMessagesService
-    
-    let usersModel = CreateMessageArrayObject()
-
     
     @State var profileImage: UIImage = UIImage(named: "logo.loading")!
     
     @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
     
+    let usersModel = CreateMessageArrayObject()
+    
     var body: some View {
         
         ScrollView {
             
-            VStack {
-
-                    ForEach(recentMessageService.recentMessages) { message in
+                VStack {
+                    ForEach(recentMessageService.recentMessages, id: \.id) { message in
                         RecentMessagesView(recentMessage: message)
-                            .environmentObject(RecentMessagesService())
-
-
                 }
             }
 
         }
         .navigationBarTitle("Recent Messages")
+        
         newMessageButton
 
     }
@@ -62,6 +56,21 @@ struct ChatMessagesView: View {
         })
         .padding(.bottom, 20)
     }
+    
+    // MARK: FUNCTIONS
+    
+//    func  reloadRecentMessages() {
+//
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+//
+//            RecentMessagesService.instance.getAllRecentMessages { (returnedPosts) in
+//
+//                recentMessageService = returnedPosts
+//
+//            }
+//        }
+//    }
+    
 }
 struct ChatMessagesView_Previews: PreviewProvider {
     static var previews: some View {

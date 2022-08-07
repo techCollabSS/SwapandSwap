@@ -95,11 +95,32 @@ struct PostView: View {
             }
             
             //MARK: FOOTER
-            
+        
             if showHeaderAndFooter {
                 HStack(alignment: .center, spacing: 20, content: {
                     
                     // IMPROVEMENT: Research the way to implement this in a function
+                    
+                    // MARK: SWAP ICON
+                    if currentUserID != nil {
+                        NavigationLink(
+                            destination: ChatSendMessageView(toUserId: post.userID, toUserDisplayName: post.username),
+                            label: {
+                                Image("swap.sflogo")
+                                    .font(Font.title2.weight(.semibold))
+                                    .foregroundColor(Color.MyTheme.orangeColor)
+                            })
+                    } else {
+                        NavigationLink(
+                            destination: SignUpView(),
+                            label: {
+                                Image("swap.sflogo")
+                                    .font(.title2)
+                                    .foregroundColor(Color.MyTheme.DarkGreyColor)
+                            })
+                        }
+
+                    // MARK: Like Button
                     if currentUserID != nil {
                         Button(action: {
                             if post.likedByUser {
@@ -147,13 +168,13 @@ struct PostView: View {
                         }
                     
                     //MARK: SHARE ICON
-                    Button(action: {
-                        sharePost()
-                    }, label: {
-                        Image(systemName: "paperplane")
-                            .font(.title3)
-                    })
-                    .accentColor(Color.MyTheme.DarkGreyColor)
+//                    Button(action: {
+//                        sharePost()
+//                    }, label: {
+//                        Image(systemName: "paperplane")
+//                            .font(.title3)
+//                    })
+//                    .accentColor(Color.MyTheme.DarkGreyColor)
                     
                     Spacer()
                 })

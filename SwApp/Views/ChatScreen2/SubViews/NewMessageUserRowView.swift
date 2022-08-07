@@ -10,8 +10,9 @@ import SwiftUI
 struct NewMessageUserRowView: View {
     
     @State var user: UserModel
-    
-    
+        
+    @State private var search: String = ""
+
     @State var profileImage: UIImage = UIImage(named: "logo.loading")!
     
 
