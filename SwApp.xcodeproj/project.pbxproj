@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		001363F23E4E276FF8E8F3DB /* Pods_SwApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED4FDB8126889BB9ECF25534 /* Pods_SwApp.framework */; };
 		5F0DB72D2893645300B6AE63 /* ChatTitleRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DB72C2893645300B6AE63 /* ChatTitleRowView.swift */; };
 		5F0DB72F2893670F00B6AE63 /* ChatSendMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DB72E2893670F00B6AE63 /* ChatSendMessageView.swift */; };
 		5F0DB7312893676300B6AE63 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0DB7302893676300B6AE63 /* MessageModel.swift */; };
@@ -69,7 +70,6 @@
 		5FD7BCC1289A2C0A0022D194 /* RecentMessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD7BCC0289A2C0A0022D194 /* RecentMessagesView.swift */; };
 		5FD7BCC3289B25180022D194 /* RecentMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD7BCC2289B25180022D194 /* RecentMessageModel.swift */; };
 		5FD7BCC5289B2E210022D194 /* RecenMessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD7BCC4289B2E210022D194 /* RecenMessageService.swift */; };
-		F33196790026133EFE2E0D50 /* Pods_SwApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1521F9A26A4312AA5260A0B /* Pods_SwApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,7 +90,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2EFB9F46D1AA07AADC34FABC /* Pods-SwApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwApp.debug.xcconfig"; path = "Target Support Files/Pods-SwApp/Pods-SwApp.debug.xcconfig"; sourceTree = "<group>"; };
 		5F0DB72C2893645300B6AE63 /* ChatTitleRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTitleRowView.swift; sourceTree = "<group>"; };
 		5F0DB72E2893670F00B6AE63 /* ChatSendMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSendMessageView.swift; sourceTree = "<group>"; };
 		5F0DB7302893676300B6AE63 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
@@ -158,8 +157,9 @@
 		5FD7BCC0289A2C0A0022D194 /* RecentMessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMessagesView.swift; sourceTree = "<group>"; };
 		5FD7BCC2289B25180022D194 /* RecentMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMessageModel.swift; sourceTree = "<group>"; };
 		5FD7BCC4289B2E210022D194 /* RecenMessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecenMessageService.swift; sourceTree = "<group>"; };
-		A3371C6FC18517CE0E0B6189 /* Pods-SwApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwApp.release.xcconfig"; path = "Target Support Files/Pods-SwApp/Pods-SwApp.release.xcconfig"; sourceTree = "<group>"; };
-		C1521F9A26A4312AA5260A0B /* Pods_SwApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1031ACFE7A1E3AEC573DA41 /* Pods-SwApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwApp.debug.xcconfig"; path = "Target Support Files/Pods-SwApp/Pods-SwApp.debug.xcconfig"; sourceTree = "<group>"; };
+		ED4FDB8126889BB9ECF25534 /* Pods_SwApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F541344F0A51F43D4EAF5A3A /* Pods-SwApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwApp.release.xcconfig"; path = "Target Support Files/Pods-SwApp/Pods-SwApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,7 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F33196790026133EFE2E0D50 /* Pods_SwApp.framework in Frameworks */,
+				001363F23E4E276FF8E8F3DB /* Pods_SwApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +277,7 @@
 				5FB1377B272F94AE00E709C5 /* SwAppUITests */,
 				5FB1375F272F94AD00E709C5 /* Products */,
 				BD25651D4EB4DDE1ACDF039D /* Pods */,
-				C98433135E462F45711A5337 /* Frameworks */,
+				8CAB3582EBDB7433508D4DA3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -407,21 +407,21 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		8CAB3582EBDB7433508D4DA3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED4FDB8126889BB9ECF25534 /* Pods_SwApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BD25651D4EB4DDE1ACDF039D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2EFB9F46D1AA07AADC34FABC /* Pods-SwApp.debug.xcconfig */,
-				A3371C6FC18517CE0E0B6189 /* Pods-SwApp.release.xcconfig */,
+				C1031ACFE7A1E3AEC573DA41 /* Pods-SwApp.debug.xcconfig */,
+				F541344F0A51F43D4EAF5A3A /* Pods-SwApp.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		C98433135E462F45711A5337 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C1521F9A26A4312AA5260A0B /* Pods_SwApp.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -431,13 +431,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5FB13782272F94AE00E709C5 /* Build configuration list for PBXNativeTarget "SwApp" */;
 			buildPhases = (
-				D175FE381C5DEEB802306964 /* [CP] Check Pods Manifest.lock */,
+				7D1AEA80EE12381978C832F0 /* [CP] Check Pods Manifest.lock */,
 				5FB1375A272F94AD00E709C5 /* Sources */,
 				5FB1375B272F94AD00E709C5 /* Frameworks */,
 				5FB1375C272F94AD00E709C5 /* Resources */,
 				5F6F23982756C30A00437672 /* Crashlytics Run Script */,
-				E72DDC9254E6068DF856A874 /* [CP] Embed Pods Frameworks */,
-				EB9281B6A27B73C4BD1F99F3 /* [CP] Copy Pods Resources */,
+				0303E819388F5FBD1E9E21F2 /* [CP] Embed Pods Frameworks */,
+				8EF1D3B0C31B2279EBB9620C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -557,6 +557,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0303E819388F5FBD1E9E21F2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwApp/Pods-SwApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwApp/Pods-SwApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwApp/Pods-SwApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5F6F23982756C30A00437672 /* Crashlytics Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -576,7 +593,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\n";
 		};
-		D175FE381C5DEEB802306964 /* [CP] Check Pods Manifest.lock */ = {
+		7D1AEA80EE12381978C832F0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -598,24 +615,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E72DDC9254E6068DF856A874 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SwApp/Pods-SwApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SwApp/Pods-SwApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwApp/Pods-SwApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EB9281B6A27B73C4BD1F99F3 /* [CP] Copy Pods Resources */ = {
+		8EF1D3B0C31B2279EBB9620C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -855,7 +855,7 @@
 		};
 		5FB13783272F94AE00E709C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2EFB9F46D1AA07AADC34FABC /* Pods-SwApp.debug.xcconfig */;
+			baseConfigurationReference = C1031ACFE7A1E3AEC573DA41 /* Pods-SwApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -906,7 +906,7 @@
 					"\"${PODS_XCFRAMEWORKS_BUILD_DIR}/GoogleAppMeasurement/AdIdSupport\"",
 					"\"${PODS_XCFRAMEWORKS_BUILD_DIR}/GoogleAppMeasurement/WithoutAdIdSupport\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseAnalytics\"",
-					$PROJECT_DIR/Pods,
+					"$PROJECT_DIR/Pods",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SwApp/Info.plist;
@@ -1014,7 +1014,7 @@
 		};
 		5FB13784272F94AE00E709C5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A3371C6FC18517CE0E0B6189 /* Pods-SwApp.release.xcconfig */;
+			baseConfigurationReference = F541344F0A51F43D4EAF5A3A /* Pods-SwApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1065,7 +1065,7 @@
 					"\"${PODS_XCFRAMEWORKS_BUILD_DIR}/FirebaseAnalytics/AdIdSupport\"",
 					"\"${PODS_XCFRAMEWORKS_BUILD_DIR}/GoogleAppMeasurement/AdIdSupport\"",
 					"\"${PODS_XCFRAMEWORKS_BUILD_DIR}/GoogleAppMeasurement/WithoutAdIdSupport\"",
-					$PROJECT_DIR/Pods,
+					"$PROJECT_DIR/Pods",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SwApp/Info.plist;

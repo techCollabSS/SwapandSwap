@@ -73,26 +73,24 @@ struct DefaultHeaderView: View {
                     if let userID = currentUserID, let displayName = currentUserDisplayName {
                     NavigationLink(
                         destination: LazyView(content: { // NOTE: Lazy View Avoids the repeated loading of an Item.
-                            ProfileView(isMyProfile: true, profileUserID: userID, profileDisplayName: displayName, posts: PostArrayObject(userID: userID))
+                           UploadView()
+                            // ProfileView(isMyProfile: true, profileUserID: userID, profileDisplayName: displayName, posts: PostArrayObject(userID: userID))
                         }),
                         label: {
-                            Image(uiImage: profileImage)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 30, height: 30, alignment: .center)
-                                .cornerRadius(15)
+                            Image(systemName: "plus")
+                                .foregroundColor(Color.MyTheme.DarkGreyColor)
                         })
-                            .onAppear(perform: {
-                                getProfileImage()
-                                getAdditionalProfileInfo()
-                        })
+//                            .onAppear(perform: {
+//                                getProfileImage()
+//                                getAdditionalProfileInfo()
+//                        })
                     } else {
                         NavigationLink(
                             destination: LazyView(content: { // NOTE: Lazy View Avoids the repeated loading of an Item.
                                 SignUpView()
                             }),
                             label: {
-                                Image(systemName: "person.circle.fill")
+                                Image(systemName: "plus")
                                     .imageScale(.large)
                                     .foregroundColor(Color.MyTheme.DarkGreyColor)
                             })

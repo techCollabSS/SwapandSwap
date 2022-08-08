@@ -88,13 +88,10 @@ struct ProfileView: View {
     
     
     func reloadProfilePosts() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-
          DataService.instance.downloadPostForUser(userID: profileUserID) { (returnedPosts) in
 
          posts.dataArray = returnedPosts
 
-            }
         }
     }
 }

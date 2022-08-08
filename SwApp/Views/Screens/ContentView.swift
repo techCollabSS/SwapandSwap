@@ -14,6 +14,8 @@ struct ContentView: View {
     @AppStorage(CurrentUserDefaults.userID) var currentUserID: String? // If user has a value, be String. If not, then nil. AppStorage is the SwiftUI version of calling user defaults.
     @AppStorage(CurrentUserDefaults.displayName) var currentUserDisplayName: String?
     
+    let recentMessages = RecentMessagesService()
+    
     let feedPosts = PostArrayObject(shuffled: false)
     let browsePosts = PostArrayObject(shuffled: true)
 
@@ -28,7 +30,16 @@ struct ContentView: View {
                     Text("Home")
                 }
             
-            UploadView()
+            ZStack {
+                // NOTE: This is to show the User Diplay under the profile info
+                if let userID = currentUserID, let displayName = currentUserDisplayName {
+                    NavigationView {
+                        ChatMessagesView(recentMessageService: recentMessages)
+                    }
+                } else {
+                    SignUpView()
+                    }
+                }
                 .tabItem {
                     //Image(systemName: "square.and.arrow.up.fill")
                     Image("swap.sflogo")

@@ -28,6 +28,7 @@ struct ProfileHeaderView: View {
             Text(profileDisplayName)
                 .font(.largeTitle)
                 .fontWeight(.bold)
+                .foregroundColor(Color.MyTheme.DarkGreyColor)
             
             //MARK: BIO
             if profileBio != "" {
@@ -35,6 +36,8 @@ struct ProfileHeaderView: View {
                     .font(.body)
                     .fontWeight(.regular)
                     .multilineTextAlignment(.center)
+                    .foregroundColor(Color.MyTheme.DarkGreyColor)
+
             }
             
             HStack(alignment: .center, spacing: 20, content: {
@@ -44,14 +47,17 @@ struct ProfileHeaderView: View {
                     Text(postArray.postCountString) // Watches the count string
                         .font(.title2)
                         .fontWeight(.bold)
+                        .foregroundColor(Color.MyTheme.DarkGreyColor)
                     
                     Capsule()
-                        .fill(Color.gray)
+                        .fill(Color.MyTheme.orangeColor)
                         .frame(width: 20, height: 2, alignment: .center)
                     
                     Text("Posts")
                         .font(.callout)
                         .fontWeight(.medium)
+                        .foregroundColor(Color.MyTheme.DarkGreyColor)
+
                     
                 })
                 
@@ -61,14 +67,18 @@ struct ProfileHeaderView: View {
                     Text(postArray.likeCountString) // Watches the count string
                         .font(.title2)
                         .fontWeight(.bold)
+                        .foregroundColor(Color.MyTheme.DarkGreyColor)
+
                     
                     Capsule()
-                        .fill(Color.gray)
+                        .fill(Color.MyTheme.orangeColor)
                         .frame(width: 20, height: 2, alignment: .center)
                     
                     Text("Likes")
                         .font(.callout)
                         .fontWeight(.medium)
+                        .foregroundColor(Color.MyTheme.DarkGreyColor)
+
                     
                 })
                 
