@@ -16,6 +16,8 @@ struct FeedView: View {
     
     var title: String
     
+    var reload: Bool? = true
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false, content: {
             LazyVStack{
@@ -38,20 +40,23 @@ struct FeedView: View {
         .navigationBarTitle(title)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            reloadFeed()
+            reloadFeed(reload: reload!)
             }
         }
     
     // MARK: FUNCTIONS
     
-    func reloadFeed() {
+    
+    func reloadFeed(reload: Bool) {
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        if reload == true {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
 
-         DataService.instance.downloadPostsForFeed { (returnedPosts) in
+             DataService.instance.downloadPostsForFeed { (returnedPosts) in
 
-         posts.dataArray = returnedPosts
+             posts.dataArray = returnedPosts
 
+                }
             }
         }
     }

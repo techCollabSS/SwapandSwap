@@ -17,6 +17,9 @@ struct RecentMessagesView: View {
     
     @State var recentRead: Bool?
     
+    
+    
+    
     @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
 
     @State var profileImage: UIImage = UIImage(named: "logo.loading")!

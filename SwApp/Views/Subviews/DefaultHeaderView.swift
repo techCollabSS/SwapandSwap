@@ -45,29 +45,29 @@ struct DefaultHeaderView: View {
             }
                 .padding(.leading, 5)
             
-                ZStack{
-                    if currentUserID != nil , currentUserID != nil {
-                        NavigationLink(
-                            destination: LazyView(content: { // NOTE: Lazy View Avoids the repeated loading of an Item.
-                                ChatMessagesView(recentMessageService: recentMessages)
-                            }),
-                            label: {
-                                Image(systemName: "text.bubble.fill")
-                                    .foregroundColor(Color.MyTheme.DarkGreyColor)
-                            })
-                        
-                    } else {
-                        NavigationLink(
-                            destination: LazyView(content: { // NOTE: Lazy View Avoids the repeated loading of an Item.
-                                SignUpView()
-                            }),
-                            label: {
-                                Image(systemName: "text.bubble.fill")
-                                    .foregroundColor(Color.MyTheme.DarkGreyColor)
-                            })
-                    }
-     
-                }
+//                ZStack{
+//                    if currentUserID != nil , currentUserID != nil {
+//                        NavigationLink(
+//                            destination: LazyView(content: { // NOTE: Lazy View Avoids the repeated loading of an Item.
+//                                ChatMessagesView(recentMessageService: recentMessages)
+//                            }),
+//                            label: {
+//                                Image(systemName: "text.bubble.fill")
+//                                    .foregroundColor(Color.MyTheme.DarkGreyColor)
+//                            })
+//
+//                    } else {
+//                        NavigationLink(
+//                            destination: LazyView(content: { // NOTE: Lazy View Avoids the repeated loading of an Item.
+//                                SignUpView()
+//                            }),
+//                            label: {
+//                                Image(systemName: "text.bubble.fill")
+//                                    .foregroundColor(Color.MyTheme.DarkGreyColor)
+//                            })
+//                    }
+//
+//                }
                 
                 ZStack{
                     if let userID = currentUserID, let displayName = currentUserDisplayName {
@@ -77,8 +77,10 @@ struct DefaultHeaderView: View {
                             // ProfileView(isMyProfile: true, profileUserID: userID, profileDisplayName: displayName, posts: PostArrayObject(userID: userID))
                         }),
                         label: {
-                            Image(systemName: "plus")
-                                .foregroundColor(Color.MyTheme.DarkGreyColor)
+                            Image(systemName: "plus.circle.fill")
+                                .foregroundColor(Color.MyTheme.orangeColor)
+                                .font(Font.system(size: 25, weight: .bold))
+
                         })
 //                            .onAppear(perform: {
 //                                getProfileImage()
@@ -90,9 +92,9 @@ struct DefaultHeaderView: View {
                                 SignUpView()
                             }),
                             label: {
-                                Image(systemName: "plus")
+                                Image(systemName: "plus.circle.fill")
                                     .imageScale(.large)
-                                    .foregroundColor(Color.MyTheme.DarkGreyColor)
+                                    .foregroundColor(Color.MyTheme.orangeColor)
                             })
                     }
                 }

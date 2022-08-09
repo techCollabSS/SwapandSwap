@@ -18,9 +18,11 @@ class RecentMessagesService: ObservableObject {
     
     @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
                 
-    @Published private(set) var recentMessages: [RecentMessageModel] = []
+    @Published private(set) var recentMessages = [RecentMessageModel]()
     
     @Published var empty = false
+    @Published var noRecents = false
+
 
 
     private var REF_MESSAGES = DB_BASE.collection("messages")
@@ -42,54 +44,66 @@ class RecentMessagesService: ObservableObject {
     func getAllRecentMessages()  {
         if self.currentUserID != nil {
 
-            db.collection("messages").document(currentUserID!).collection("recents").getDocuments { (snap, err) in
-
-            if err != nil{
-
-                print((err?.localizedDescription)!)
-                self.empty = true
-                return
-            }
-
-            if (snap?.documents.isEmpty)!{
-
-                self.empty = true
-                return
-            }
-
-            for i in snap!.documents {
-
-                let id = i.documentID
-                let chatUserId = i.get("chatUserId") as! String
-                let chatDisplayName = i.get("chatDisplayName") as! String
-                let lastMessageText = i.get("lastMessageText") as! String
-                let read = i.get("read") as! Bool
-                let timestamp = i.get("timestamp") as! Timestamp
-
-                if id != self.currentUserID! {
-
-                    self.recentMessages.append(RecentMessageModel(id: id,
-                                                                  chatUserId: chatUserId,
-                                                                  chatDisplayName: chatDisplayName,
-                                                                  lastMessageText: lastMessageText,
-                                                                  read: read,
-                                                                  timestamp: timestamp.dateValue()))
+            
+            
+            db.collection("messages").document(currentUserID!).collection("recents").order(by: "timestamp", descending: true).addSnapshotListener { (snap, err) in
+                
+                if err != nil{
                     
+                    print((err?.localizedDescription)!)
+                    self.noRecents = true
+                    return
+                }
+                
+                if snap!.isEmpty{
+                    
+                    self.noRecents = true
+                }
+                
+                for i in snap!.documentChanges{
+                    
+                    if i.type == .added {
+                        
+                        let id = i.document.documentID
+                        let chatUserId = i.document.get("chatUserId") as! String
+                        let chatDisplayName = i.document.get("chatDisplayName") as! String
+                        let lastMessageText = i.document.get("lastMessageText") as! String
+                        let read = i.document.get("read") as! Bool
+                        let timestamp = i.document.get("timestamp") as! Timestamp
+                        
+     
+                        
+                        self.recentMessages.append(RecentMessageModel(id: id, chatUserId: chatUserId, chatDisplayName: chatDisplayName, lastMessageText: lastMessageText, read: read, timestamp: timestamp.dateValue()))
+                    }
+                    
+                    if i.type == .modified {
+                        
+                        let id = i.document.documentID
+                        let chatUserId = i.document.get("chatUserId") as! String
+                        let chatDisplayName = i.document.get("chatDisplayName") as! String
+                        let lastMessageText = i.document.get("lastMessageText") as! String
+                        let read = i.document.get("read") as! Bool
+                        let timestamp = i.document.get("timestamp") as! Timestamp
+                        
+                        for j in 0..<self.recentMessages.count {
+                            
+                            if self.recentMessages[j].id == id{
+                                
+                                self.recentMessages[j].id = id
+                                self.recentMessages[j].chatUserId = chatUserId
+                                self.recentMessages[j].chatDisplayName = chatDisplayName
+                                self.recentMessages[j].lastMessageText = lastMessageText
+                                self.recentMessages[j].read = read
+                                self.recentMessages[j].timestamp = timestamp.dateValue()
+                            }
+                        }
                     }
                 }
-
-            if self.recentMessages.isEmpty{
-
-                self.empty = true
-                }
-                
-                if let recentText = self.recentMessages.last?.lastMessageText {
-                    self.recentText = recentText
-                }
-                
             }
-            
+        } else {
+            print("No active user to get messages for")
         }
+        
     }
     
     func recentMessageOnAppear(userId: String, handler: @escaping (_ lastMessageText: String?, _ read: Bool?, _ timestamp: Date?) -> ()) {

@@ -9,8 +9,7 @@ import SwiftUI
 
 struct ChatMessagesView: View {
             
-    @ObservedObject var recentMessageService: RecentMessagesService
-    
+    @EnvironmentObject var recentMessageService: RecentMessagesService
     
     @State var profileImage: UIImage = UIImage(named: "logo.loading")!
     
@@ -20,17 +19,17 @@ struct ChatMessagesView: View {
     
     var body: some View {
         
-        ScrollViewReader { proxy in
-        ScrollView {
+        VStack {
+        ScrollView (.vertical, showsIndicators: false) {
                 VStack {
-                    ForEach(recentMessageService.recentMessages, id: \.id) { message in
+                    ForEach(recentMessageService.recentMessages.sorted(by: {$0.timestamp > $1.timestamp}), id: \.id) { message in
                         RecentMessagesView(recentMessage: message)
-                        
+                    }
                 }
             }
-        }
         .navigationBarTitle("Recent Messages")
-        newMessageButton
+            newMessageButton
+
         }
     }
     
@@ -58,12 +57,18 @@ struct ChatMessagesView: View {
     
     // MARK: FUNCTIONS
     
+    func  reloadRecentMessages() {
 
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+
+            RecentMessagesService.instance.getAllRecentMessages()
+        }
+    }
     
 }
 struct ChatMessagesView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatMessagesView(recentMessageService: RecentMessagesService())
+        ChatMessagesView()
             .preferredColorScheme(.dark)
     }
 }

@@ -27,6 +27,7 @@ struct ChatSendMessageView: View {
                 VStack {
                     ChatTitleRowView(toUserId: toUserId!, toUserDisplayName: toUserDisplayName!)
                         .background(Color.MyTheme.whiteColor)
+                        .navigationBarTitle("", displayMode: .inline)
                     
                     ScrollViewReader { proxy in
                         ScrollView {
