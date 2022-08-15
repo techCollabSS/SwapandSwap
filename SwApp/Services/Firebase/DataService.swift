@@ -24,7 +24,7 @@ class DataService {
     
     // MARK: CREATE FUNCTION
     
-    func uploadPost(image: UIImage, caption: String?, displayName: String, userID: String, handler: @escaping (_ success: Bool) -> ()) {
+    func uploadPost(image: UIImage, caption: String?, displayName: String, userID: String, postCategory: String, handler: @escaping (_ success: Bool) -> ()) {
         
         // Create new post document in database
         let document = REF_POSTS.document()
@@ -41,6 +41,7 @@ class DataService {
                     DatabasePostField.postID : postID,
                     DatabasePostField.userID : userID,
                     DatabasePostField.displayName : displayName,
+                    DatabasePostField.postCategory : postCategory,
                     DatabasePostField.caption : caption!,
                     DatabasePostField.dateCreated : FieldValue.serverTimestamp(),
                 ]
@@ -138,6 +139,8 @@ class DataService {
                 if
                     let userID = document.get(DatabasePostField.userID) as? String,
                     let displayName = document.get(DatabasePostField.displayName) as? String,
+                    let postCategory = document.get(DatabasePostField.postCategory) as? String,
+                        
                     let timestamp = document.get(DatabasePostField.dateCreated) as? Timestamp {
                     
                     let caption = document.get(DatabasePostField.caption) as? String
@@ -151,7 +154,7 @@ class DataService {
                         likedByUser = userIDArray.contains(userID)
                     }
                     
-                    let newPost = PostModel(postID: postID, userID: userID, username: displayName, caption: caption, dateCreated: date, likeCount: likeCount, likedByUser: likedByUser)
+                    let newPost = PostModel(postID: postID, userID: userID, username: displayName, postCategory: postCategory, caption: caption, dateCreated: date, likeCount: likeCount, likedByUser: likedByUser)
                     postArray.append(newPost)
                 }
             }

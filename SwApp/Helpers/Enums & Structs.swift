@@ -27,6 +27,7 @@ struct DatabasePostField { // Fields within Post Document in Database
     static let postID = "post_id"
     static let userID = "user_id"
     static let displayName = "display_name"
+    static let postCategory = "post_category"
     static let caption = "caption"
     static let dateCreated = "date_created"
     static let likeCount = "like_count" // Integer
@@ -58,21 +59,6 @@ struct CurrentUserDefaults { // Fields for UserDefaults saved within app
     static let displayName = "display_name"
     static let bio = "bio"
     static let userID = "user_id"
-}
-
-struct FirebaseConstants {
-    
-    static let fromId = "fromId"
-    static let toId = "toId"
-    static let text = "text"
-    static let timestamp = "timestamp"
-    static let displayName = "displayName"
-    static let profileImageUrl = "profileImageUrl"
-    static let messages = "messages"
-    static let users = "users"
-    static let recentMessages = "recent_messages"
-    static let messageID = "messageID"
-
 }
 
 

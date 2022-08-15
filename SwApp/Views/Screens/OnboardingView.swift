@@ -32,7 +32,7 @@ struct OnboardingView: View {
                 .fontWeight(.bold)
                 .foregroundColor(Color.MyTheme.whiteColor)
             
-            Text("SwApp is a revolutionary social media platform that allows our users to have a dynamic closet by swapping with other users.")
+            Text("Swap & Swap is a revolutionary social media platform that allows our users to have a dynamic closet by swapping with other users.")
                 .font(.headline)
                 .fontWeight(.medium)
                 .multilineTextAlignment(.center)

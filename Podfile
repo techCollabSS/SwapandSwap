@@ -5,6 +5,7 @@ target 'SwApp' do
   use_frameworks!
 
 pod 'Firebase/Analytics'
+pod 'Firebase/Crashlytics'
 pod 'FirebaseCore'
 pod 'Firebase/Auth'
 pod 'Firebase/Firestore'

@@ -14,6 +14,7 @@ struct PostModel: Identifiable, Hashable {
     var postID: String // ID for the post in Database
     var userID: String // ID for the user in Database
     var username: String // Username of user in Database
+    var postCategory: String
     var caption: String?
     var dateCreated: Date
     var likeCount: Int

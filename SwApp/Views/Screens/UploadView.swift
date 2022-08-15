@@ -13,6 +13,7 @@ struct UploadView: View {
     @State var showImagePicker: Bool = false
     @State var imageSelected: UIImage = UIImage(named: "logo")!
     @State var sourceType: UIImagePickerController.SourceType = .camera
+    @State var postCategory: String
     
     @State var showPostImageView: Bool = false
     
@@ -61,7 +62,7 @@ struct UploadView: View {
                 .frame(width: 100, height: 100, alignment: .center)
                 .shadow(radius: 12)
                 .fullScreenCover(isPresented: $showPostImageView, content: {
-                    PostImageView(imageSelected: $imageSelected)
+                    PostImageView(postCategory: postCategory, imageSelected: $imageSelected)
                         .preferredColorScheme(colorScheme)
                     
                 })
@@ -82,7 +83,7 @@ struct UploadView: View {
 
 struct UploadView_Previews: PreviewProvider {
     static var previews: some View {
-        UploadView()
+        UploadView(postCategory: "")
             .preferredColorScheme(.light)
     }
 }

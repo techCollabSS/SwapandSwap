@@ -80,7 +80,7 @@ struct RecentMessagesView: View {
                         }
                         .padding(.horizontal)
                     })
-                    .background(recentMessage.read ? Color.MyTheme.whiteColor : Color.MyTheme.lightBlueColor)
+                    .background(recentRead == true ? Color.MyTheme.whiteColor : Color.MyTheme.lightBlueColor)
                     .padding(.vertical, 20)
                     .onAppear(perform: {
                         getProfileImage()
@@ -108,13 +108,11 @@ struct RecentMessagesView: View {
     
     func  reloadRecentMessages(userId: String) {
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-
             RecentMessagesService.instance.recentMessageOnAppear(userId: userId) { lastMessageText, read, timestamp in
                 recentMessageText = lastMessageText!
                 recentRead = read!
                 recentTimestamp = timestamp
-            }
+            
         }
     }
     

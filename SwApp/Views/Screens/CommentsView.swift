@@ -139,7 +139,7 @@ struct CommentsView: View {
 
 struct CommentsView_Previews: PreviewProvider {
     
-    static let post = PostModel(postID: "test", userID: "test", username: "test", dateCreated: Date(), likeCount: 0, likedByUser: false)
+    static let post = PostModel(postID: "test", userID: "test", username: "test", postCategory: "test", dateCreated: Date(), likeCount: 0, likedByUser: false)
     static var previews: some View {
         NavigationView {
             CommentsView(post: post)

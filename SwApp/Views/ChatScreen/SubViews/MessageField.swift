@@ -10,10 +10,11 @@ import SwiftUI
 struct MessageField: View {
     
     @EnvironmentObject var messagesService: MessagesService
-    @State private var message = ""
     
     @State var toUserId: String?
     @State var toUserDisplayName: String?
+    
+    @State var message = ""
 
     @AppStorage(CurrentUserDefaults.userID) var currentUserID: String? // If user has a value, be String. If not, then nil. AppStorage is the SwiftUI version of calling user defaults.
     @AppStorage(CurrentUserDefaults.displayName) var currentUserDisplayName: String?
@@ -26,6 +27,16 @@ struct MessageField: View {
                 CustomTexField(placeholder: Text("Write Message Here . . ."), messageText: $message)
                     .frame(height: 52)
                     .disableAutocorrection(true)
+                    .onAppear {
+                        if message != "" {
+                            if let fromUserId = currentUserID, let fromDisplayName = currentUserDisplayName {
+                                message = "I would like to swap \"\(message)\" with you."
+                                messagesService.sendMessage(text: message, fromUserId: fromUserId, fromDisplayName: fromDisplayName, toUserId: toUserId!, toDisplayName: toUserDisplayName!)
+                                message = ""
+
+                            }
+                        }
+                    }
                 
                 Button {
                     if let fromUserId = currentUserID, let fromDisplayName = currentUserDisplayName {

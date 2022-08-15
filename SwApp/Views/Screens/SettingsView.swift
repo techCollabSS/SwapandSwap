@@ -22,7 +22,7 @@ struct SettingsView: View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false, content: {
                 
-                //MARK: SECTION 1: SwApp
+                //MARK: SECTION 1: Swap & Swap
                 GroupBox(label: SettingsLabelView(labelText: "Swap & Swap", labelImage: "dot.radiowaves.left.and.right"), content: {
                     HStack(alignment: .center, spacing: 10, content: {
                         
@@ -72,19 +72,19 @@ struct SettingsView: View {
                 GroupBox(label: SettingsLabelView(labelText: "Application", labelImage: "apps.iphone"), content: {
                     
                     Button(action: {
-                        openCustomURL(urlString: "https://www.google.com") //INSERT SWAPP'S PRIVACY POLICY
+                        openCustomURL(urlString: "https://www.google.com") //INSERT SWAP & SWAP PRIVACY POLICY
                     }, label: {
                         SettingsRowView(leftIcon: "folder.fill", text: "Privacy Policy", color: Color.MyTheme.yellowColor)
                     })
                     
                     Button(action: {
-                        openCustomURL(urlString: "https://www.google.com")  //INSERT SWAPP'S TERMS & CONDITIONS
+                        openCustomURL(urlString: "https://www.google.com")  //INSERT SWAP & SWAP TERMS & CONDITIONS
                     }, label: {
                         SettingsRowView(leftIcon: "folder.fill", text: "Terms & Conditions", color: Color.MyTheme.yellowColor)
                     })
                     
                     Button(action: {
-                        openCustomURL(urlString: "https://www.google.com")  //INSERT SWAPP'S HOME PAGE WEBSITE
+                        openCustomURL(urlString: "https://www.google.com")  //INSERT SWAP & SWAP HOME PAGE WEBSITE
                     }, label: {
                         SettingsRowView(leftIcon: "globe", text: "Swap & Swap Website", color: Color.MyTheme.yellowColor)
                     })

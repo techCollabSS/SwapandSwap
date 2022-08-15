@@ -14,6 +14,8 @@ struct ChatSendMessageView: View {
     
     @State var toUserId: String?
     @State var toUserDisplayName: String?
+    
+    @State var swapMessage: String? = ""
             
     @StateObject var messagesService = MessagesService()
     
@@ -22,7 +24,7 @@ struct ChatSendMessageView: View {
 
     var body: some View {
         
-        if currentUserID  != nil {
+        if currentUserID != nil {
             VStack {
                 VStack {
                     ChatTitleRowView(toUserId: toUserId!, toUserDisplayName: toUserDisplayName!)
@@ -50,7 +52,7 @@ struct ChatSendMessageView: View {
                     messagesService.getMessages(fromUserId: currentUserID!, toUserId: toUserId!)
                 }
 
-                MessageField(toUserId: toUserId!, toUserDisplayName: toUserDisplayName!)
+                MessageField(toUserId: toUserId!, toUserDisplayName: toUserDisplayName!, message: swapMessage!)
                         .environmentObject(MessagesService())
             }
         }

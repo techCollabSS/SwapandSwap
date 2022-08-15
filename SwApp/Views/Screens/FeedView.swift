@@ -7,7 +7,12 @@
 
 import SwiftUI
 
+
 struct FeedView: View {
+    
+    @State var isShowing = false
+
+    @State var searchText = ""
     
     @ObservedObject var posts: PostArrayObject
     
@@ -15,33 +20,77 @@ struct FeedView: View {
     @AppStorage(CurrentUserDefaults.displayName) var currentUserDisplayName: String?
     
     var title: String
-    
     var reload: Bool? = true
     
+    @State var showHeader: Bool? = true
+    
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false, content: {
-            LazyVStack{
-                if let userID = currentUserID, let displayname = currentUserDisplayName {
-                    VStack{
-                        DefaultHeaderView(profileUserID: userID, profileDisplayName: displayname)
-                    }
-                } else{
-                    VStack{
-                        DefaultHeaderView(profileUserID: "", profileDisplayName: "")
-                    }
+        ZStack {
+            VStack {
+                ScrollView(.vertical, showsIndicators: false, content: {
+ 
+                        VStack {
+                            if showHeader == true {
+                                if let userID = currentUserID, let displayname = currentUserDisplayName {
+                                    VStack{
+                                        DefaultHeaderView(profileUserID: userID,
+                                                          isShowing: $isShowing,
+                                                          postSearchData: $posts.dataArray,
+                                                          searchText: $searchText)
+                                    }
+                                } else{
+                                    VStack{
+                                        DefaultHeaderView(profileUserID: "",
+                                                          isShowing: $isShowing,
+                                                          postSearchData: $posts.dataArray,
+                                                          searchText: $searchText)
+                                    }
+                                }
+                            }
+
+                            if self.searchText != ""{
+                                
+                                if posts.dataArray.filter({$0.username.lowercased().contains(self.searchText.lowercased()) || $0.postCategory.lowercased().contains(self.searchText.lowercased()) }).count == 0 {
+                                    
+                                    Text("No Results Found").padding(.top, 10)
+                                }
+                                
+                                else {
+                                    ForEach(posts.dataArray.filter({$0.username.lowercased().contains(self.searchText.lowercased()) || $0.postCategory.lowercased().contains(self.searchText.lowercased())}),id: \.self){ post in
+                                        PostView(post: post, showHeaderAndFooter: true, addHeartAnimationToView: true)
+                                    }
+                                }
+                            } else {
+                                ForEach(posts.dataArray,id: \.self) { post in
+                                    
+                                    PostView(post: post, showHeaderAndFooter: true, addHeartAnimationToView: true)
+                                }
+                            }
+                            
+
+                        }
+                })
+                .blur(radius: isShowing == true ? 5 : 0)
+                .navigationBarTitle(title)
+                .navigationBarTitleDisplayMode(.inline)
+                .onAppear {
+                    reloadFeed(reload: reload!)
+                    isShowing = false
                 }
-                ForEach(posts.dataArray, id: \.self){ post in
-                    PostView(post: post, showHeaderAndFooter: true, addHeartAnimationToView: true)
+                
+                if isShowing == true {
+                        VStack {
+                            CustomActionSheetView(isShowing: $isShowing)
+                        }
+                        .animation(.default)
+                        .edgesIgnoringSafeArea(.bottom)
+                    }
+            }
+                .onTapGesture {
+                    isShowing = false
                 }
             }
-            
-        })
-        .background(Color.MyTheme.beigeColor.ignoresSafeArea(.all))
-        .navigationBarTitle(title)
-        .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-            reloadFeed(reload: reload!)
-            }
+            .background(Color.MyTheme.beigeColor)
         }
     
     // MARK: FUNCTIONS
@@ -64,6 +113,7 @@ struct FeedView: View {
 
 struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
+                
         NavigationView {
             FeedView(posts: PostArrayObject(shuffled: false), title: "Feed Test")
         }

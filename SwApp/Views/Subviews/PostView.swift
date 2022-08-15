@@ -104,7 +104,7 @@ struct PostView: View {
                     // MARK: SWAP ICON
                     if currentUserID != nil {
                         NavigationLink(
-                            destination: ChatSendMessageView(toUserId: post.userID, toUserDisplayName: post.username),
+                            destination: ChatSendMessageView(toUserId: post.userID, toUserDisplayName: post.username, swapMessage: post.caption),
                             label: {
                                 Image("swap.sflogo")
                                     .font(Font.title2.weight(.semibold))
@@ -134,9 +134,9 @@ struct PostView: View {
                         }, label: {
                             Image(systemName: post.likedByUser ? "heart.fill" : "heart")
                                 .font(.title3)
-                                .foregroundColor(Color.MyTheme.DarkGreyColor)
+                                .foregroundColor(post.likedByUser ? .red : Color.MyTheme.DarkGreyColor)
                         })
-                            .accentColor(post.likedByUser ? .red : .primary)
+                            .accentColor(post.likedByUser ? .red : Color.MyTheme.DarkGreyColor)
                         
                     } else {
                         NavigationLink(
@@ -216,7 +216,7 @@ struct PostView: View {
         }
         
         //Update local data (POST MODEL)
-        let updatePost = PostModel(postID: post.postID, userID: post.userID, username: post.username, caption: post.caption, dateCreated: post.dateCreated, likeCount: post.likeCount + 1, likedByUser: true)
+         let updatePost = PostModel(postID: post.postID, userID: post.userID, username: post.username, postCategory: post.postCategory, caption: post.caption, dateCreated: post.dateCreated, likeCount: post.likeCount + 1, likedByUser: true)
         self.post = updatePost // Updated version of post
         // Animte UI
         animateLike = true
@@ -234,7 +234,7 @@ struct PostView: View {
             return
         }
     
-        let updatePost = PostModel(postID: post.postID, userID: post.userID, username: post.username, caption: post.caption, dateCreated: post.dateCreated, likeCount: post.likeCount - 1, likedByUser: false)
+        let updatePost = PostModel(postID: post.postID, userID: post.userID, username: post.username, postCategory: post.postCategory, caption: post.caption, dateCreated: post.dateCreated, likeCount: post.likeCount - 1, likedByUser: false)
         self.post = updatePost // Updated version of post
         
         // Update the database
@@ -335,7 +335,7 @@ struct PostView: View {
 
 struct PostView_Previews: PreviewProvider {
     
-    static var post: PostModel = PostModel(postID: "", userID: "", username: "Joe Green", caption: "This is a test caption", dateCreated: Date(), likeCount: 0, likedByUser: false)
+    static var post: PostModel = PostModel(postID: "", userID: "", username: "Joe Green", postCategory: "Test", caption: "This is a test caption", dateCreated: Date(), likeCount: 0, likedByUser: false)
     
     static var previews: some View {
         PostView(post: post, showHeaderAndFooter: true, addHeartAnimationToView: true, defaultPadding: true)
