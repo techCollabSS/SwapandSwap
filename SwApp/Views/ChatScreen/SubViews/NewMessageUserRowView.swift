@@ -9,19 +9,20 @@ import SwiftUI
 
 struct NewMessageUserRowView: View {
     
-    @State var user: UserModel
-        
+    //@State var user: UserModel
+    
+    @State var userId: String?
+    @State var userDisplayName: String?
+    
     @State private var search: String = ""
 
     @State var profileImage: UIImage = UIImage(named: "logo.loading")!
     
-
+    @Binding var showSheet: Bool
+    
     var body: some View {
 
-        NavigationLink(
-            destination: LazyView(content: { // NOTE: Lazy View Avoids the repeated loading of an Item.
-                ChatSendMessageView(toUserId: user.userID, toUserDisplayName: user.displayName)
-            }), label: {
+
             HStack(spacing: 16) {
                 Image(uiImage: profileImage)
                     .resizable()
@@ -32,17 +33,15 @@ struct NewMessageUserRowView: View {
                     .overlay(RoundedRectangle(cornerRadius: 50)
                         .stroke(Color.MyTheme.yellowColor, lineWidth: 2)
                     )
-                Text(user.displayName)
+                Text(userDisplayName!)
                     .foregroundColor(Color(.label))
                 Spacer()
             }
             .padding(.horizontal)
-
-        })
-        .navigationBarTitle("New Message")
         .onAppear() {
             getProfileImage()
         }
+
         
         Divider()
             .padding(.vertical, 8)
@@ -55,7 +54,7 @@ struct NewMessageUserRowView: View {
 
         // Get profile image
         // NOTE: Sames as ProfileView
-        ImageManager.instance.downloadProfileImage(userID: user.userID) { (returnedImage) in
+        ImageManager.instance.downloadProfileImage(userID: userId!) { (returnedImage) in
             if let image = returnedImage {
                 self.profileImage = image
             }
@@ -68,6 +67,7 @@ struct NewMessageUserRowView_Previews: PreviewProvider {
     static var userModel: UserModel = UserModel(id: "", displayName: "", email: "", providerID: "", provider: "", userID: "", bio: "", dateCreated: Date())
 
     static var previews: some View {
-        NewMessageUserRowView(user: userModel)
+        SearchBarView()
+        //NewMessageUserRowView()
     }
 }

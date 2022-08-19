@@ -126,6 +126,8 @@ class MessagesService: ObservableObject {
                    fromDisplayName: fromDisplayName,
                    toUserId: toUserId,
                    toDisplayName: toDisplayName)
+        
+        
     }
     
     func setRecents (text: String, fromUserId: String, fromDisplayName: String,toUserId: String, toDisplayName: String) {

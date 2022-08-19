@@ -50,12 +50,21 @@ struct ChatSendMessageView: View {
                 .background(Color.MyTheme.yellowColor)
                 .onAppear {
                     messagesService.getMessages(fromUserId: currentUserID!, toUserId: toUserId!)
+                    readRecentMessage(fromUserId: currentUserID!, toUserId: toUserId!, read: true)
+
                 }
 
                 MessageField(toUserId: toUserId!, toUserDisplayName: toUserDisplayName!, message: swapMessage!)
                         .environmentObject(MessagesService())
             }
+
         }
+    }
+    
+    // MARK: FUNCTIONS
+    
+    func readRecentMessage (fromUserId: String, toUserId: String, read: Bool) {
+        RecentMessagesService.instance.updateRecentsOnRead(fromUserId: fromUserId, toUserId: toUserId, read: read)
     }
 }
 

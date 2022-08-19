@@ -13,32 +13,74 @@ struct ChatMessagesView: View {
     
     @State var profileImage: UIImage = UIImage(named: "logo.loading")!
     
+    @State var showSheet = false
+    @State var showChat = false
+    @State var chatUserId = ""
+    @State var chatUserDisplayName = ""
+
+    
     @AppStorage(CurrentUserDefaults.userID) var currentUserID: String?
     
     let usersModel = CreateMessageArrayObject()
     
     var body: some View {
-        
-        VStack {
-        ScrollView (.vertical, showsIndicators: false) {
-                VStack {
-                    ForEach(recentMessageService.recentMessages.sorted(by: {$0.timestamp > $1.timestamp}), id: \.id) { message in
-                        RecentMessagesView(recentMessage: message)
-                    }
-                }
+        ZStack {
+            
+            NavigationLink(destination:
+                            ChatSendMessageView(toUserId: self.chatUserId, toUserDisplayName: self.chatUserDisplayName), isActive: self.$showChat) {
+                
+                Text("")
             }
+            
+            VStack {
+                ScrollView (.vertical, showsIndicators: false) {
+            
+//                VStack {
+//                    ForEach(recentMessageService.recentMessages.sorted(by: {$0.timestamp > $1.timestamp})) { message in
+//                        RecentMessagesView(chatUserId: message.chatUserId, chatDisplayName: message.chatDisplayName, chatLastMessageText: message.lastMessageText, messageTimeStamp: message.timestamp)
+//
+//                    }
+//                }
+            
+            VStack(spacing: 12){
+                
+                ForEach(recentMessageService.recentMessages.sorted(by: {$0.timestamp > $1.timestamp})){ message in
+                    
+                    Button(action: {
+                        
+                        self.chatUserId = message.chatUserId
+                        self.chatUserDisplayName = message.chatDisplayName
+                        self.showChat.toggle()
+                        
+                    }) {
+                        
+                        RecentMessagesView(chatUserId: message.chatUserId, chatDisplayName: message.chatDisplayName, chatLastMessageText: message.lastMessageText, messageTimeStamp: message.timestamp)
+                    }
+                    
+                }
+                
+            }.padding()
+        }
         .navigationBarTitle("Recent Messages")
+
             newMessageButton
 
         }
+        .sheet(isPresented: self.$showSheet) {
+            NavigationView {
+                CreateNewMessageView(showSheet: $showSheet, showChat: $showChat, chatUserId: self.$chatUserId, chatUserDisplayName: self.$chatUserDisplayName)
+                    .navigationBarTitle("New Message")
+            }
+        }
     }
+}
     
     
     private var newMessageButton: some View {
-        NavigationLink(
-            destination: LazyView(content: { // NOTE: Lazy View Avoids the repeated loading of an Item.
-                 CreateNewMessageView(vm: usersModel)
-            }), label: {
+        Button(action: {
+            self.showSheet.toggle()
+
+            }, label: {
             HStack {
                 Spacer()
                 Text("+ New Message")
@@ -57,13 +99,6 @@ struct ChatMessagesView: View {
     
     // MARK: FUNCTIONS
     
-    func  reloadRecentMessages() {
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-
-            RecentMessagesService.instance.getAllRecentMessages()
-        }
-    }
     
 }
 struct ChatMessagesView_Previews: PreviewProvider {
